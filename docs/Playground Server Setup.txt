@@ -1,0 +1,131 @@
+
+# ------------------------------------------------------------------------------------
+#   
+#   This file describes step by step how the Playground Server is setup.
+#   
+#   These instructions assume the Linux OS: Ubuntu 18.04 LTS
+#
+# ------------------------------------------------------------------------------------
+
+# Update [apt] Package Manager
+# The [upgrade] is not required but recommend
+sudo apt update
+sudo apt upgrade
+
+# Install Apache and PHP
+sudo apt install apache2
+sudo apt install php
+
+# Enable PHP for Apache
+sudo apt install libapache2-mod-php
+
+# Enable a Fallback page so that [index.php]
+# does not show in the URL.
+sudo nano /etc/apache2/apache2.conf
+# Scroll through the file and look for line:
+#    <Directory /var/www/>
+# Under it add the line:
+#    FallbackResource /index.php
+# Save using:
+#    {control+x} -> {y} -> {enter}
+#    or {control+s} -> {control+x}
+
+# Enable Gzip Compression for JSON Responses
+#   (This is not enabled by default on Apache)
+sudo nano /etc/apache2/mods-available/deflate.conf
+# Add the following under similar commands:
+#       AddOutputFilterByType DEFLATE application/json
+
+# Edit PHP Settings in [php.ini]
+sudo nano /etc/php/7.2/apache2/php.ini
+
+# Settings to use, the purpose of the settings is to use
+# minimal sever resources and prevent file uploads.
+max_execution_time = 1
+max_input_time = 1
+memory_limit = 16M
+post_max_size = 1M
+file_uploads = Off
+
+# Restart Apache
+sudo service apache2 restart
+
+# Set Permissions
+# This assumes that the user [ubuntu] exists and
+# is used to create and update files on the site.
+sudo adduser ubuntu www-data
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Create and view a PHP test file
+cd /var/www/html
+echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
+# http://your-server.example.com/phpinfo.php
+# http://35.161.242.238/phpinfo.php
+
+# Delete file [phpinfo.php] after checking server
+sudo rm phpinfo.php
+
+# Download Site Files
+# In the future, theses will be link to GitHub Repositories
+cd ~
+wget https://dataformsjs.s3-us-west-1.amazonaws.com/tmp/Playground-2019-10-30.zip
+sudo apt install unzip
+unzip Playground-2019-10-30.zip
+ls
+
+# Copy Files (Overview)
+Website\[app, app_data, html, scripts, vendor]
+    -> Copy under [/var/www]
+
+# Copy Files (Commands)
+cp -r ~/Playground/app /var/www/app
+cp -r ~/Playground/app_data /var/www/app_data
+cp -r ~/Playground/html /var/www
+cp -r ~/Playground/scripts /var/www/scripts
+cp -r ~/Playground/vendor /var/www/vendor
+
+# Delete the Default Apache File
+sudo rm /var/www/html/index.html
+
+# After copying files up, reset permissions
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Setup a Cron Job using sudo to check for and delete expired sites.
+# Runs once per minute, if not using [sudo] then sites will end up
+# not being deleted.
+sudo crontab -e
+* * * * * php /var/www/scripts/delete-expired-sites.php
+
+# To view cron history:
+grep CRON /var/log/syslog
+
+# View last result and sites directory:
+cat /var/www/app_data/delete-sites-last-result.txt
+cd /var/www/html/sites
+ls -la
+
+# Generate a new key and update [app.php]
+# For info on key generation with (xxd...urandom) see:
+#     https://www.fastsitephp.com/en/documents/file-encryption-bash
+xxd -l 32 -c 32 -p /dev/urandom
+# Example Output (don't use this, generate your own key):
+#   a8bbb2226896c95fec7d392951417b15372187e1aa373da5c9105db393279fdd
+# Copy the key to the clipboard and update the PHP file
+nano /var/www/app/app.php
+# View the file using [nano] one more time after saving to verify the key changed
+
+# Update Local Playground JavaScript File with the new URL 
+# Seach for "localhost:8888" or "urlRoot:" in the file and make related changes
+#
+# File:
+#    Website\public\js\page-playground.js
+# Example:
+#   urlRoot: 'http://35.161.242.238/',
+
+# Test the site from the Playground UI to verify it works
+
+# Keep a site live for an hour then verify it get's deleted automatically
+cat /var/www/app_data/delete-sites-last-result.txt
+ls -la /var/www/html/sites
