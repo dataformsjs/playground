@@ -53,11 +53,16 @@ define('CACERT_FILE', sys_get_temp_dir() . '/install-cacert.pem');
  */
 $downloads = array(
     array(
-        'url' => 'https://www.fastsitephp.com/downloads/framework',
+        'url' => 'https://github.com/fastsitephp/fastsitephp/archive/1.0.0.zip',
         'save_file' => __DIR__ . '/FastSitePHP.zip',
         'check_file' => VENDOR_DIR . '/fastsitephp/src/Application.php',
+        'mkdir' => VENDOR_DIR . '/fastsitephp',
+        'rename_from' => VENDOR_DIR . '/fastsitephp-1.0.0',
+        'rename_to' => VENDOR_DIR . '/fastsitephp',
         'skip_check' => __DIR__ . '/../src/Application.php', // Skip download if running within Framework
     ),
+    // The following are commented out because they are not needed for DataFormsJS
+    /*
     array(
         'url' => 'https://github.com/php-fig/log/archive/1.1.0.zip',
         'save_file' => __DIR__ . '/psr-log.zip',
@@ -66,6 +71,31 @@ $downloads = array(
         'rename_from' => VENDOR_DIR . '/log-1.1.0',
         'rename_to' => VENDOR_DIR . '/psr/log',
     ),
+    array(
+        'url' => 'https://github.com/erusev/parsedown/archive/1.7.3.zip',
+        'save_file' => __DIR__ . '/parsedown.zip',
+        'check_file' => VENDOR_DIR . '/erusev/parsedown/Parsedown.php',
+        'mkdir' => VENDOR_DIR . '/erusev',
+        'rename_from' => VENDOR_DIR . '/parsedown-1.7.3',
+        'rename_to' => VENDOR_DIR . '/erusev/parsedown',
+    ),
+    array(
+        'url' => 'https://github.com/ircmaxell/password_compat/archive/v1.0.4.zip',
+        'save_file' => __DIR__ . '/password_compat.zip',
+        'check_file' => VENDOR_DIR . '/ircmaxell/password-compat/lib/password.php',
+        'mkdir' => VENDOR_DIR . '/ircmaxell',
+        'rename_from' => VENDOR_DIR . '/password_compat-1.0.4',
+        'rename_to' => VENDOR_DIR . '/ircmaxell/password-compat',
+    ),
+    array(
+        'url' => 'https://github.com/paragonie/random_compat/archive/v2.0.18.zip',
+        'save_file' => __DIR__ . '/random_compat.zip',
+        'check_file' => VENDOR_DIR . '/paragonie/random_compat/lib/random.php',
+        'mkdir' => VENDOR_DIR . '/paragonie',
+        'rename_from' => VENDOR_DIR . '/random_compat-2.0.18',
+        'rename_to' => VENDOR_DIR . '/paragonie/random_compat',
+    ),
+    */
 );
 
 /**
