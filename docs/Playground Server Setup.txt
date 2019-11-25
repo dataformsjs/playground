@@ -135,6 +135,11 @@ nano /var/www/app/app.php
 cat /var/www/app_data/delete-sites-last-result.txt
 ls -la /var/www/html/sites
 
+# Download HTML Update scripts
+# Used to update the site template when new CDN versions are published
+cd /var/www/scripts
+wget https://raw.githubusercontent.com/dataformsjs/website/master/scripts/update-html-files-cdn-version.php
+
 # Additional Steps performmed for the live site
 https://playground.dataformsjs.com/
 
