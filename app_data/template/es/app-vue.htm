@@ -1,0 +1,125 @@
+<!doctype html>
+<html
+    lang="en"
+    data-show-errors
+    data-graphql-url="https://www.dataformsjs.com/graphql">
+<!----------------------------------------------------------------------------------------
+    Esta demostración se basa en la página principal [app.htm] y usa Vue en lugar
+    de HandlebarsJS. Además, esta página utiliza datos de un servicio GraphQL.
+---------------------------------------------------------------------------------------->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Playground Site - Vue</title>
+        <link rel="stylesheet" href="site.css">
+        <link rel="shortcut icon" href="../../favicon.ico" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a class="active" href="#/">Casa</a>
+                <a href="#/calc">Calculadora</a>
+                <a href="#/data">Ejemplo de datos</a>
+                <a href="#/demos">Otras demostraciones</a>
+            </nav>
+        </header>
+                
+        <main id="view" class="container"></main>
+        
+        <footer>
+            <p class="year"></p>
+            <p class="now"></p>
+        </footer>
+        
+        <template id="loading-screen">
+            <h3 class="loading">Cargando...</h3>
+        </template>
+        
+        <script type="text/x-template" data-engine="vue" id="error-screen">
+            <h3 class="error">{{ errorMessage }}</h3>
+        </script>
+
+        <template data-route="/">
+            <h1>Hola Mundo</h1>
+			<div class="home-page-animation">
+                <img src="sun.svg" class="sun">
+                <div class="orbit">
+                    <img src="planet.svg" class="planet">
+                    <img src="moon.svg" class="moon">
+                </div>
+            </div>
+        </template>
+                
+        <script
+            type="text/x-template"
+            data-engine="vue"
+            data-route="/calc"
+            data-page="calcPage"
+            data-lazy-load="calcPage"
+            src="calc-vue.htm">
+        </script>
+
+        <script
+            type="text/x-template"
+            data-engine="vue"
+            data-route="/data"
+            data-page="jsonData"
+            data-graphql-src="countries.graphql"
+            data-load-only-once="true"
+            data-lazy-load="jsonData, filter, sort, clickToHighlight, vueDirectives, flags"
+            data-countries
+            src="data-vue.htm">
+        </script>
+        
+        <template data-route="/demos">
+            <h1>Otras demostraciones</h1>
+            <ul class="demos">
+                <li><a href="app.htm">Handlebars</a></li>
+                <li><a href="app-react.htm">React</a></li>
+                <li><a href="app-web.htm">Web Components</a></li>
+            </ul>
+        </template>
+
+        <!--
+            Vue
+            https://vuejs.org
+
+            Dev Latest:
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            Specific Dev Version:
+                <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+            Prod Version:
+                <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+        <!--
+            DataFormsJS
+            https://www.dataformsjs.com
+        -->
+        <script src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/DataFormsJS.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/navLinks.min.js"></script>
+        <script>
+            app.lazyLoad = {
+                jsonData: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/pages/jsonData.min.js',
+                filter: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/filter.min.js',
+                sort: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/sort.min.js',
+                clickToHighlight: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/clickToHighlight.min.js',
+                flags: 'https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css',
+                vueDirectives: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/extensions/vue-directives.min.js',
+                calcPage: 'calcPage.js',
+            };
+        </script>
+     	<script>
+            // Agregue un complemento para actualizar el año / hora del pie de página cuando se actualice la página
+            (function () {
+                'use strict';
+                app.addPlugin('updateFooter', function() {
+                    var now = new Date();
+                    document.querySelector('footer .year').textContent = now.getFullYear();
+                    document.querySelector('footer .now').textContent = now;
+                });
+            })();
+        </script>
+    </body>
+</html>

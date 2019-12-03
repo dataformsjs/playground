@@ -1,0 +1,120 @@
+<!doctype html>
+<html
+    lang="en"
+    data-show-errors>
+<!----------------------------------------------------------------------------------------
+    Este archivo es el punto de entrada principal para su sitio web, por lo que no
+    se puede eliminar ni renombrar. Este archivo usa HandlebarsJS, sin embargo,
+    si desea usar Vue, React, Web Components u otro código como predeterminado,
+    simplemente reemplace el contenido de este archivo.
+
+    Después de ver el sitio, intente hacer un cambio, como reemplazar 'Hola Mundo'
+    con su nombre o cambiar el color de los elementos en la página.
+
+    Si tiene acceso a los datos de un servicio web público o local con soporte CORS,
+    intente modificar una de estas demostraciones para mostrar los datos de su
+    servicio web. Si puede acceder a sus datos a través de este sitio,
+    permite la creación rápida de prototipos y el desarrollo.
+---------------------------------------------------------------------------------------->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Playground Site</title>
+        <link rel="stylesheet" href="site.css">
+        <link rel="shortcut icon" href="../../favicon.ico" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a class="active" href="#/">Casa</a>
+                <a href="#/calc">Calculadora</a>
+                <a href="#/data">Ejemplo de datos</a>
+                <a href="#/demos">Otras demostraciones</a>
+            </nav>
+        </header>
+
+        <main id="view" class="container"></main>
+        
+        <footer data-template-id="tmpl-footer"></footer>
+
+        <template id="loading-screen">
+            <h3 class="loading">Cargando...</h3>
+        </template>
+
+        <script type="text/x-template" data-engine="handlebars" id="error-screen">
+            <h3 class="error">{{errorMessage}}</h3>
+        </script>
+        
+        <script type="text/x-template" data-engine="handlebars" id="tmpl-footer">
+            <p>{{js '(new Date()).getFullYear()'}}</p>
+            <p>{{now}}</p>
+        </script>
+
+        <template data-route="/">
+            <h1>Hola Mundo</h1>
+			<div class="home-page-animation">
+                <img src="sun.svg" class="sun">
+                <div class="orbit">
+                    <img src="planet.svg" class="planet">
+                    <img src="moon.svg" class="moon">
+                </div>
+            </div>
+        </template>
+                
+        <script
+            type="text/x-template"
+            data-engine="handlebars"
+            data-route="/calc"
+            data-page="calcPage"
+            data-lazy-load="calcPage, dataBind"
+            src="calc-page.htm">
+        </script>
+
+        <script
+            type="text/x-template"
+            data-engine="handlebars"
+            data-route="/data"
+            data-page="jsonData"
+            data-url="https://www.dataformsjs.com/data/geonames/countries"
+            data-load-only-once="true"
+            data-lazy-load="jsonData, filter, sort, clickToHighlight, flags"
+            src="data-page.htm">
+        </script>
+        
+        <template data-route="/demos">
+            <h1>Otras demostraciones</h1>
+            <ul class="demos">
+                <li><a href="app-vue.htm">Vue + GraphQL</a></li>
+                <li><a href="app-react.htm">React</a></li>
+                <li><a href="app-web.htm">Web Components</a></li>
+            </ul>
+        </template>
+
+        <!--
+            Handlebars
+            https://handlebarsjs.com
+        -->
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@4.5.1/dist/handlebars.min.js"></script>
+        
+        <!-- DataFormsJS Handlebars Helpers -->
+        <script src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/extensions/handlebars-helpers.min.js"></script>
+
+        <!--
+            DataFormsJS
+            https://www.dataformsjs.com
+        -->
+        <script src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/DataFormsJS.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/navLinks.min.js"></script>
+        <script>
+            app.lazyLoad = {
+                jsonData: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/pages/jsonData.min.js',
+                filter: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/filter.min.js',
+                sort: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/sort.min.js',
+                dataBind: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/dataBind.min.js',
+                clickToHighlight: 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/plugins/clickToHighlight.min.js',
+                flags: 'https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css',
+                calcPage: 'calcPage.js',
+            };
+        </script>
+    </body>
+</html>

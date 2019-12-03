@@ -1,0 +1,25 @@
+<!--
+	Fuente HTML para la página de la Calculadora en la demostración principal [app.htm].
+
+	Este archivo se carga solo cuando la página se abre por primera vez usando:
+        <script type="text/x-template"
+            data-engine="handlebars"
+            data-route="/calc"
+            src="calc-page.htm">
+        </script>
+-->
+<h1>Calculadora</h1>
+
+<section class="calc">
+    <input data-bind="currentX" placeholder="Value X" size="7">
+    <select data-bind="currentOp">
+        <option value="+">Add (+)</option>
+        <option value="-">Subtract (-)</option>
+        <option value="*">Multiply (*)</option>
+        <option value="/">Divide (/)</option>
+    </select>
+    <input data-bind="currentY" placeholder="Value Y" size="7">
+    <button>Calculate</button>
+</section>
+
+<div data-template-url="calc-result.htm"></div>

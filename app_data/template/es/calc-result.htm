@@ -1,0 +1,37 @@
+<!--
+	HTML Control
+	
+	Este archivo se carga desde [cal-page.htm] por el siguiente código:
+		<div data-template-url="calc-result.htm"></div>
+
+	Luego, desde JavaScript, este archivo se puede volver a representar
+	después de las actualizaciones del modelo llamando a:
+		app.refreshAllHtmlControls()
+		app.refreshHtmlControl(document.querySelector("[data-template-url='calc-result.htm']"))
+
+	Para probarlo, abra la página de la calculadora, calcula uno o más resultados,
+	luego ejecute lo siguiente desde las herramientas de desarrollo de su navegador:
+		app.activeModel.results = [];
+		app.refreshAllHtmlControls();
+
+	Se pueden pasar devoluciones de llamada opcionales y
+	modelos de datos al actualizar los controles HTML:
+		app.refreshAllHtmlControls(callback, model)
+		app.refreshHtmlControl(element, callback, model)
+
+	Cuando se usa el Marco DataFormsJS con un motor de plantillas
+	(HandlebarsJS, Underscore, Nunjucks), el uso de controles HTML funciona
+	bien para reutilizar el código HTML y mantener su proyecto organizado.
+	Cuando se utiliza el Marco de datos DataForms, se recomienda que los
+	controles HTML tengan control total sobre la actualización de partes
+	individuales de una página.
+-->
+{{#if results}}
+    <section class="calc-result">
+        <ul>
+            {{#each results}}
+                <li {{#if hasError}}class="error"{{/if}}>{{x}} {{op}} {{y}} = {{z}}</li>
+            {{/each}}
+        </ul>
+    </section>
+{{/if}}

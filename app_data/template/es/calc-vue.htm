@@ -1,0 +1,27 @@
+<!--
+	Fuente de plantilla de Vue para la página Calculadora en la demostración [app-vue.htm].
+    Este archivo es similar a [calc-page.htm] y [calc-result.htm], sin embargo, Vue se
+    encarga de actualizar el <ul> dinámicamente según los cambios del modelo, por lo
+        que no se necesita un control HTML separado (calc-result.htm).
+-->
+<h1>Calculadora</h1>
+
+<section class="calc">
+    <input v-model="currentX" placeholder="Value X" size="7">
+    <select v-model="currentOp">
+        <option value="+">Add (+)</option>
+        <option value="-">Subtract (-)</option>
+        <option value="*">Multiply (*)</option>
+        <option value="/">Divide (/)</option>
+    </select>
+    <input v-model="currentY" placeholder="Value Y" size="7">
+    <button v-on:click="calculateResult">Calculate</button>
+</section>
+
+<section class="calc-result" v-if="results.length" v-cloak>
+    <ul>
+        <li v-for="item in results" v-bind:class="item.hasError ? 'error' : ''">
+            {{ item.x }} {{ item.op }} {{ item.y }} = {{ item.z }}
+        </li>
+    </ul>
+</section>
