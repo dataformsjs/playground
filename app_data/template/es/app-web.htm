@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <!----------------------------------------------------------------------------------------
-    Esta demostración utiliza componentes web DataFormsJS para mostrar datos de un
-    servicio JSON. Los componentes web funcionan en navegadores modernos y se muestra
+    Esta demostración utiliza DataFormsJS Web Components para mostrar datos de un
+    servicio JSON. Los Web Components funcionan en navegadores modernos y se muestra
     una advertencia amigable para los usuarios con navegadores más antiguos.
 ---------------------------------------------------------------------------------------->
     <head>
@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="../../favicon.ico" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css">
         <style>
-            /* Evite que los componentes web personalizados aparezcan durante el renderizado incluyen el siguiente CSS */
+            /* Evite que los Web Components personalizados aparezcan durante el renderizado incluyen el siguiente CSS */
             json-data:not(:defined),
             is-loading:not(:defined),
             has-error:not(:defined),
@@ -122,7 +122,7 @@
 
             // Agregue imágenes de marca a la <table> una vez que se haya procesado.
             async function showTableImages(e) {
-                // Espere hasta que todos los componentes web estén configurados
+                // Espere hasta que todos los Web Components estén configurados
                 await componentsAreSetup();
 
                 // Salir si la página no tiene tabla
