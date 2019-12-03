@@ -25,26 +25,26 @@
 (function () {
     'use strict';
         
-    // Simple array to match the pages <select>
+    // Matriz simple para que coincida con las páginas <seleccionar>
     var ops = [ '+', '-', '*', '/' ];
     
-    // Helper function
+    // Función auxiliar
     function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    // Create a page object
+    // Crear un objeto de página
     var page = {
-        // Define the model
+        // Define el modelo
         model: {
-            // Define model props and set initial values.
-            // These will be cached in memory until the page is reloaded.
+            // Definir accesorios de modelo y establecer valores iniciales.
+            // Estos se almacenarán en la memoria caché hasta que se vuelva a cargar la página.
             results: [],
             currentOp: ops[getRandomInt(4)],
             currentX: getRandomInt(1000000),
             currentY: getRandomInt(1000000),
             
-            // Calculator Functions
+            // Funciones de calculadora
             add: function(x, y) { return x + y; },
             subtract: function(x, y) { return x - y; },
             multiply: function(x, y) { return x * y; },
@@ -62,13 +62,13 @@
                 }
             },
 
-            // Button click event
+            // Evento de clic de botón
             calculateResult: function() {                
-                // Calculate
-                // Model props [currentX, currentOp, currentY] are updated automatically
-                // by using the [dataBind.js] plugin for Handlebars and using [v-model]
-                // with Vue. Alternatively, the values could be read directly from DOM
-                // using [document.querySelector(), etc].
+                // Calcular
+                // Los accesorios del modelo [currentX, currentOp, currentY] se actualizan
+                // automáticamente usando el complemento [dataBind.js] para Handlebars y
+                // usando [v-model] con Vue. Alternativamente, los valores podrían leerse
+                // directamente desde DOM usando [document.querySelector (), etc.].
                 var item = {
                     x: parseFloat(this.currentX),
                     op: this.currentOp,
@@ -77,42 +77,42 @@
                 item.z = this.calculate(item.x, item.op, item.y);
                 item.hasError = isNaN(item.z);
                 
-                // Add to model property (front of the array)
+                // Agregar a la propiedad del modelo (frente de la matriz)
                 this.results.unshift(item);
                 
-                // Reset form to a new random value
+                // Restablecer formulario a un nuevo valor aleatorio
                 this.currentOp = ops[getRandomInt(4)];
                 this.currentX = getRandomInt(1000000);
                 this.currentY = getRandomInt(1000000);
                 
-                // Render HTML Controls to show updated model values.
-                // This also triggers the [data-bind] plugin for Handlebars.
-                // With the default demo code for Vue this only causes the
-                // <footer> to update because Vue does not use HTML Controls
-                // or other JS Plugins.
+                // Renderiza controles HTML para mostrar valores de modelo actualizados.
+                // Esto también activa el complemento [data-bind] para Handlebars.
+                // Con el código de demostración predeterminado para Vue, esto solo
+                // hace que el <footer> se actualice porque Vue no usa controles
+                // HTML u otros complementos JS.
                 app.refreshAllHtmlControls();
             },
             
-            // Setup DOM events for the model when the HTML is rendered
+            // Configurar eventos DOM para el modelo cuando se representa el HTML
             setupView: function() {
-                // This files is shared for both the Handlebars and Vue demos.
-                // With Vue standard Vue event handling from HTML is used:
+                // Este archivo se comparte para las demostraciones Handlebars y Vue.
+                // Con el estándar Vue, se utiliza el manejo de eventos Vue desde HTML:
                 //     v-on:click="calculateResult"
-                // However the following would also work with Vue if the [v-on]
-                // event was not used.
+                // Sin embargo, lo siguiente también funcionaría con Vue si no se usara
+                // el evento [v-on].
                 if (app.activeController.viewEngine !== 'Vue') {
                     document.querySelector('button').onclick = this.calculateResult.bind(this);
                 }
             },
         },
         
-        // Define the Controller [onRendered()] function.
-        // This gets called each time the view is redrawn.
+        // Defina la función Controlador [onRendered ()].
+        // Esto se llama cada vez que se vuelve a dibujar la vista.
         onRendered: function() {
             this.setupView();
         },
     };
 
-    // Add page to app
+    // Agregar página a la aplicación
     app.addPage('calcPage', page);
 })();

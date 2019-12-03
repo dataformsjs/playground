@@ -74,11 +74,11 @@
         <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/web-components/input-filter.min.js"></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/web-components/sortable-table.min.js"></script>
 
-        <!-- Older browsers (IE, Older Mobile Devices, etc) will see a warning -->
+        <!-- Los navegadores más antiguos (IE, dispositivos móviles más antiguos, etc.) verán una advertencia -->
         <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/web-components/safari-nomodule.min.js"></script>
         <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/web-components/old-browser-warning.min.js"></script>
 
-        <!-- Update content when page is loaded or changed -->
+        <!-- Actualizar contenido cuando la página se carga o cambia -->
         <script type="module">
             import { componentsAreSetup } from 'https://cdn.jsdelivr.net/npm/dataformsjs@3.1.4/js/web-components/utils.min.js';
             
@@ -105,12 +105,13 @@
                 document.querySelector('footer .now').textContent = now;
             }
             
-            // Called when the page is first opened on each hash/route change
+            // Se llama cuando la página se abre por primera vez en cada cambio de hash / ruta
             function setupTableImages() {
                 const jsonData = document.querySelector('json-data');
                 if (jsonData !== null) {
-                    // [contentReady === true] can happen on the first page load if the
-                    // data loads very fast - (before <script type="module"> finished loading).
+                    // [contentReady === true] puede suceder en la carga de la primera página
+                    // si los datos se cargan muy rápido - (antes de que <script type="module">
+                    // finalice la carga).
                     if (jsonData.contentReady) {
                         showTableImages();
                     } else {
@@ -119,25 +120,25 @@
                 }
             }
 
-            // Add Flag Images to the <table> once it has been rendered.
+            // Agregue imágenes de marca a la <table> una vez que se haya procesado.
             async function showTableImages(e) {
-                // Wait till all web components are setup
+                // Espere hasta que todos los componentes web estén configurados
                 await componentsAreSetup();
 
-                // Exit if page has no table
+                // Salir si la página no tiene tabla
                 const table = document.querySelector('table');
                 if (table === null || table.tBodies === null || table.tBodies.length !== 1) {
                     return;
                 }
 
-                // Does Country Code (ISO) come from URL Parameters?
+                // ¿El código de país (ISO) proviene de los parámetros de URL?
                 let pageIso = null;
                 if (e && e.target && e.target.urlParams) {
                     pageIso = JSON.parse(e.target.urlParams);
                     pageIso = (pageIso.country ? pageIso.country.toLowerCase() : null);
                 }
                 
-                // Add flags to all rows
+                // Agregar banderas a todas las filas
                 const tableRows = table.tBodies[0].rows;
                 const rowCount = tableRows.length;
                 for (let x = 0; x < rowCount; x++) {

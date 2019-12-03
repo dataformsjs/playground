@@ -1,15 +1,15 @@
 <div v-if="isLoading" v-cloak data-template-id="loading-screen"></div>
 <div v-if="hasError" v-cloak data-template-id="error-screen"></div>
 <div v-if="isLoaded" v-cloak>
-    <h1>Countries</h1>
+    <h1>Países</h1>
 
     <div>
         <input
-               data-filter-selector="table"
-               data-filter-results-text-selector="h1"
-               data-filter-results-text-all="{totalCount} Countries"
-               data-filter-results-text-filtered="Showing {displayCount} of {totalCount} Countries"
-               placeholder="Enter filter, example 'North America'">
+            data-filter-selector="table"
+            data-filter-results-text-selector="h1"
+            data-filter-results-text-all="{totalCount} Países"
+            data-filter-results-text-filtered="Mostrando {displayCount} de {totalCount} países"
+            placeholder="Introduzca filtro, ejemplo 'South America'">
     </div>
     
     <table
@@ -18,11 +18,11 @@
            data-sort-class-even="row-even">
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th class="text-right">Size (KM)</th>
-                <th class="text-right">Population</th>
-                <th>Continent</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th class="text-right">Tamaño (KM)</th>
+                <th class="text-right">Población</th>
+                <th>Continente</th>
             </tr>
         </thead>
         <tbody class="click-to-highlight">

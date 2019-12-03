@@ -1,8 +1,8 @@
 <!--
-	HTML Template for the data page on the [app-web.htm] demo.
+	Plantilla HTML para la página de datos en la demostración [app-web.htm].
 -->
 
-<h1>Countries</h1>
+<h1>Países</h1>
 
 <json-data
     url="https://www.dataformsjs.com/data/geonames/countries"
@@ -15,20 +15,20 @@
     </has-error>
     <is-loaded>
         <input
-               is="input-filter"
-               filter-selector="table"
-               filter-results-selector="h1"
-               filter-results-text-all="{totalCount} Countries"
-               filter-results-text-filtered="Showing {displayCount} of {totalCount} Countries"
-               placeholder="Enter filter, example 'North America'">
+            is="input-filter"
+            filter-selector="table"
+            filter-results-selector="h1"
+            filter-results-text-all="{totalCount} Países"
+            filter-results-text-filtered="Mostrando {displayCount} de {totalCount} países"
+            placeholder="Introduzca filtro, ejemplo 'South America'">
 
         <data-table
-                    data-bind="countries"
-                    col-link-template="#/regions/:iso"
-                    labels="Code, Name, Size (KM), Population, Continent"
-                    table-attr="is=sortable-table,
-                                data-sort-class-odd=row-odd,
-                                data-sort-class-even=row-even">
+            data-bind="countries"
+            col-link-template="#/regions/:iso"
+            labels="Código, Nombre, Tamaño (KM), Población, Continente"
+            table-attr="is=sortable-table,
+                        data-sort-class-odd=row-odd,
+                        data-sort-class-even=row-even">
         </data-table>
     </is-loaded>
 </json-data>

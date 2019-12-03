@@ -17,8 +17,8 @@ export function ShowCountries(props) {
                     <tr>
                         <th>Code</th>
                         <th>Name</th>
-                        <th>Size (KM)</th>
-                        <th>Population</th>
+                        <th class="text-right">Size (KM)</th>
+                        <th class="text-right">Population</th>
                         <th>Continent</th>
                     </tr>
                 </thead>

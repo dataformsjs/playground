@@ -1,25 +1,25 @@
 export function ShowCountries(props) {
     return (
         <React.Fragment>
-            <h1>Countries</h1>
+            <h1>Países</h1>
             
             <InputFilter
                 filter-selector="table"
                 filter-results-selector="h1"
-                filter-results-text-all="{totalCount} Countries"
-                filter-results-text-filtered="Showing {displayCount} of {totalCount} Countries"
-                placeholder="Enter filter, example 'North America'" />
+                filter-results-text-all="{totalCount} Países"
+                filter-results-text-filtered="Mostrando {displayCount} de {totalCount} países"
+                placeholder="Introduzca filtro, ejemplo 'South America'" />
 
             <SortableTable
                 data-sort-class-odd="row-odd"
                 data-sort-class-even="row-even">
                 <thead>
                     <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Size (KM)</th>
-                        <th>Population</th>
-                        <th>Continent</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th class="text-right">Tamaño (KM)</th>
+                        <th class="text-right">Población</th>
+                        <th>Continente</th>
                     </tr>
                 </thead>
                 <tbody>

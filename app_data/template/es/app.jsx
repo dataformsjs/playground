@@ -1,10 +1,10 @@
 {/*
-	JavaScript/JSX (Babel) Code used with the [app-react.htm] demo
+	Código JavaScript / JSX (Babel) utilizado con la demostración [app-react.htm]
     
-    The <ErrorBoundary> component provides Error Boundaries to help
-    solve and display React Component Errors. However if you have
-    a syntax error with this file that prevents Babel from compiling
-    the file then refer to the Browsers Dev Tools to see the error.
+    El componente <ErrorBoundary> proporciona límites de error para ayudar a
+    resolver y mostrar los errores del componente React. Sin embargo, si tiene
+    un error de sintaxis con este archivo que impide que Babel compile el archivo,
+    consulte las Herramientas de desarrollo de los navegadores para ver el error.
 */}
 const Router = window.ReactRouterDOM.HashRouter;
 const Route = window.ReactRouterDOM.Route;
@@ -67,7 +67,7 @@ class App extends React.Component {
                     <Router>
                         <header>
                             <nav>
-                                <NavLink exact to="/" activeClassName="active">Home</NavLink>
+                                <NavLink exact to="/" activeClassName="active">Casa</NavLink>
                                 <NavLink exact to="/data" activeClassName="active">Ejemplo de datos</NavLink>
                                 <NavLink exact to="/demos" activeClassName="active">Otras demostraciones</NavLink>
                             </nav>

@@ -258,7 +258,7 @@ table tbody tr.row-even { background-color: #fff; }
 /* Color for [clickToHighlight] plugin */
 table tbody tr.highlight { background-color:#ff0; }
 
-/********** Data Page **********/
+/********** Demo Page **********/
 
 .demos { list-style:none; }
 .demos li a { display:inline-block; padding:10px 20px; }

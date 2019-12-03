@@ -95,7 +95,7 @@
             
             // Setup DOM events for the model when the HTML is rendered
             setupView: function() {
-                // This files is shared for both the Handlebars and Vue demos.
+                // This file is shared for both the Handlebars and Vue demos.
                 // With Vue standard Vue event handling from HTML is used:
                 //     v-on:click="calculateResult"
                 // However the following would also work with Vue if the [v-on]
