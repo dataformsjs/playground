@@ -1,8 +1,7 @@
 /* Reiniciar */
 * { margin:0; padding:0; }
 
-/* Uso de 'Pila de fuentes nativas': consulte Docs Bootstrap 4 para obtener información sobre 'Pila de fuentes nativas' */
-/* 'Native Font Stack' */
+/* Uso de 'Pila de fuentes nativas': consulte Docs Bootstrap 4 para obtener información sobre 'Native Font Stack' */
 html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
