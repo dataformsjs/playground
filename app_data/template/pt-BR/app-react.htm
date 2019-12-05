@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="pt-BR">
 <!----------------------------------------------------------------------------------------
-    Esta demostración usa React with React Router y muestra datos de un servicio JSON
-    usando DataFormsJS React Components. Babel Standalone se utiliza en el navegador
-    para transpilar el código JSX de <script type="text/babel"> a JavaScript.
+	This demo uses React with React Router and displays data from a JSON Service
+	using DataFormsJS React Components. Babel Standalone is used in the Browser
+	to transpile the JSX code from <script type="text/babel"> to JavaScript.
 ---------------------------------------------------------------------------------------->
     <head>
         <meta charset="utf-8">
@@ -17,7 +17,7 @@
         <div id="root"></div>
 
         <script>
-            // Permita que [babel-standalone] use [importar y exportar] con archivos JSX
+            // Allow [babel-standalone] to use [import and exports] with JSX files
             window.exports = window;
             function require(module) {
                 switch (module) {
@@ -40,8 +40,8 @@
 
         <!--
             Babel for JSX
-            Utilice [babel-standalone@6] para el soporte de IE.
-            Babel 7 [@babel] se puede usar para navegadores modernos.
+            Use [babel-standalone@6] for IE Support.
+            Babel 7 [@babel] can be used for modern browsers.
             https://babeljs.io
         -->
         <!--

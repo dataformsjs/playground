@@ -50,6 +50,7 @@ function getLangauage($lang) {
     switch ($lang) {
         case 'en':
         case 'es':
+        case 'pt-BR':
             break;
         default:
             $lang = 'en';
