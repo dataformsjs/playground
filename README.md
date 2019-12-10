@@ -7,6 +7,17 @@ This repository contains playground website for DataFormsJS. The UI (User Interf
 * __Playground UI__: [https://www.dataformsjs.com/#/en/playground](https://www.dataformsjs.com/#/en/playground)
 * __Playground Server__: [https://playground.dataformsjs.com/](https://playground.dataformsjs.com/)
 
+## :desktop_computer: Running Locally
+
+Download this repository then run the install script. This will also generate a new `app_data/.env` file which is used for authentication.
+
+~~~
+cd {root-directory}
+php ./scripts/install.php
+~~~
+
+Or to install using Composer: `composer require fastsitephp/fastsitephp`. Then copy `app_data/.env.example` to `app_data/.env`.
+
 ## ⚙️ How it works
 
 This project has the same code base and a similar setup as the playground for FastSitePHP. See info in the following repository for how the site works.

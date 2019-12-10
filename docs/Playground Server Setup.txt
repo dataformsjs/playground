@@ -87,6 +87,7 @@ ls /var/www
 ls -la /var/www/html
 
 # Install FastSitePHP (~470 kb) and Dependencies (~20 - 40 kb)
+# This also generates the [app_data/.env] file
 sudo apt install php7.2-zip
 php /var/www/scripts/install.php
 
@@ -113,16 +114,6 @@ grep CRON /var/log/syslog
 cat /var/www/app_data/delete-sites-last-result.txt
 cd /var/www/html/sites
 ls -la
-
-# Generate a new key and update [app.php]
-# For info on key generation with (xxd...urandom) see:
-#     https://www.fastsitephp.com/en/documents/file-encryption-bash
-xxd -l 32 -c 32 -p /dev/urandom
-# Example Output (don't use this, generate your own key):
-#   a8bbb2226896c95fec7d392951417b15372187e1aa373da5c9105db393279fdd
-# Copy the key to the clipboard and update the PHP file
-nano /var/www/app/app.php
-# View the file using [nano] one more time after saving to verify the key changed
 
 # Update Local Playground JavaScript File with the new URL 
 # Seach for "localhost:8888" or "urlRoot:" in the file and make related changes
@@ -152,3 +143,6 @@ https://playground.dataformsjs.com/
 # 4) Installed HTTPS Certificate using certbot:
 #    https://certbot.eff.org/lets-encrypt/ubuntubionic-apache
 #    Host: playground.dataformsjs.com
+
+# Additionally a shell script is used to sync changes from GitHub back to the server
+https://github.com/dataformsjs/playground/blob/master/scripts/sync-server-from-github.sh

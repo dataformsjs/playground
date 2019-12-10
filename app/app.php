@@ -6,6 +6,7 @@
 // Classes used in this file. Classes are not loaded unless used.
 // ------------------------------------------------------------------
 
+use FastSitePHP\Environment\DotEnv;
 use FastSitePHP\FileSystem\Search;
 use FastSitePHP\FileSystem\Security;
 use FastSitePHP\Security\Crypto;
@@ -20,13 +21,6 @@ $app->template_dir = __DIR__;
 $app->not_found_template = '404.htm';
 $app->error_template = 'error.php';
 $app->show_detailed_errors = true;
-
-// The key for signing is hard-coded. The value below can be used for testing
-// while the actual production server has a different value.
-// A new key can be generated from bash using the command [xxd -l 32 -c 32 -p /dev/urandom]
-// For info on key generation with (xxd...urandom) see:
-//   https://www.fastsitephp.com/en/documents/file-encryption-bash
-$app->config['SIGNING_KEY'] = 'a8bbb2226896c95fec7d392951417b15372187e1aa373da5c9105db393279fdd';
 
 // Allow CORS with Headers for posting data with Auth.
 // This allows the web service to run from any site.
@@ -116,6 +110,16 @@ function fileNameIsValid($name) {
 }
 
 
+// Load the site key from the [app_data/.env] file. It is used by
+// [Security\Crypto\SignedData] with [Crypto::sign()] and [Crypto::verify()].
+// When running the install script the file will be generated.
+function loadSiteKey() {
+    $dir = __DIR__ . '/../app_data';
+    $required_vars = ['SIGNING_KEY'];
+    DotEnv::load($dir, $required_vars);
+}
+
+
 // Route Filter Function to get and validate the submitted site.
 // This is the core security function that prevents users from modifying
 // content on a site that they do not have the key for.
@@ -133,6 +137,7 @@ $require_auth = function () use ($app) {
     }
 
     // Validate Token
+    loadSiteKey();
     $token = str_replace('Bearer ', '', $token);
     $site = Crypto::verify($token);
     if ($site === null) {
@@ -243,6 +248,7 @@ $app->post('/:lang/create-site', function($lang) {
     // Return site info (site string and expires time) as signed data.
     // Signed data is similar to JWT but uses a different format.
     // By default [Crypto::sign()] uses a 1 hour timeout.
+    loadSiteKey();
     return [
         'site' => Crypto::sign($site),
     ];
