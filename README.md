@@ -4,7 +4,7 @@
 
 This repository contains playground website for DataFormsJS. The UI (User Interface) exists on the main website in the main Website repository, while this repository only contains code that exists on the separate playground web server.
 
-* __Playground UI__: [https://www.dataformsjs.com/#/en/playground](https://www.dataformsjs.com/#/en/playground)
+* __Playground UI__: [https://www.dataformsjs.com/en/playground](https://www.dataformsjs.com/en/playground)
 * __Playground Server__: [https://playground.dataformsjs.com/](https://playground.dataformsjs.com/)
 
 ## :desktop_computer: Running Locally
