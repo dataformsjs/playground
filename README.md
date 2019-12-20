@@ -18,8 +18,7 @@ php ./scripts/install.php
 
 Or to install using Composer: `composer require fastsitephp/fastsitephp`. Then copy `app_data/.env.example` to `app_data/.env`.
 
-
-Then follow instructions in the root `index.php` page to run. You will also need to point the UI from the local build of the main site to the local playground server. Search for “urlRoot:” in the `website\public\js\page-playground.js` file and make the change.
+Then follow instructions in the root `index.php` page to run the site. You will also need to point the UI from the local build of the main site to the local playground server. Search for “urlRoot:” in the `website\public\js\page-playground.js` file and make the change.
 
 https://github.com/dataformsjs/website/blob/master/public/js/page-playground.js
 
