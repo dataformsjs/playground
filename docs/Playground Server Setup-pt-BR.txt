@@ -1,0 +1,154 @@
+
+# ------------------------------------------------------------------------------------
+#
+#   Este arquivo descreve passo a passo como o Servidor do Code Playground é
+#   configurado.
+#   Estes comandos podem rodar de um terminal baseado na web como o AWS Lightsail.
+#
+#   Estas instruções assumem o SO Linux: Ubuntu 18.04 LTS
+#
+# ------------------------------------------------------------------------------------
+
+# Atualize a lista do Gerenciador de Pacotes [apt] com [update]
+sudo apt update
+# O [upgrade] não é obrigatório mas é recomendado (porém, isso pode levar muitos
+# minutos)
+sudo apt upgrade
+
+# Instale o Apache e o PHP
+sudo apt install apache2 php
+
+# Habilitar o PHP no Apache
+sudo apt install libapache2-mod-php
+
+# Habilitar a extensão zip do PHP para o script de
+# instalação do FastSitePHP
+sudo apt install php7.2-zip
+
+# Ative página Fallback para que o
+$ [index.php] não seja mostrado na URL.
+sudo nano /etc/apache2/apache2.conf
+# Role pelo arquivo e procure pela linha:
+#    <Directory /var/www/>
+# Abaixo disso adicione a linha:
+#    FallbackResource /index.php
+# Salve utilizando:
+#    {control+s} -> {control+x}
+#    ou {control+x} -> {y} -> {enter}
+
+# Ative a Compressão Gzip para Respostas JSON
+#   (Isto não é ativado por padrão no Apache)
+sudo nano /etc/apache2/mods-available/deflate.conf
+# Adicione o seguinte sob comandos similares:
+#       AddOutputFilterByType DEFLATE application/json
+
+# Edite as Configurações PHP em [php.ini]
+sudo nano /etc/php/7.2/apache2/php.ini
+
+# Configurações para utilizar, o propósito destas configurações é utilizar
+# o mínimo de recursos do servidor e prevenir uploads de arquivos.
+max_execution_time = 1
+max_input_time = 1
+memory_limit = 16M
+post_max_size = 1M
+file_uploads = Off
+
+# Reinicie o Apache
+sudo service apache2 restart
+
+# Defina Permissões
+# Isto assume que o usuário [ubuntu] existe e
+# é utilizado para criar e atualizar arquivos no site.
+sudo adduser ubuntu www-data
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Criar e visualizar um arquivo teste PHP
+cd /var/www/html
+echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
+# http://your-server.example.com/phpinfo.php
+# http://52.37.34.134/phpinfo.php
+
+# Apague o arquivo [phpinfo.php] depois de verificar
+* o servidor
+sudo rm phpinfo.php
+
+# Baixe os Arquivos do Site
+cd ~
+wget https://github.com/dataformsjs/playground/archive/master.zip
+sudo apt install unzip
+unzip master.zip
+ls
+
+# Copie os Arquivos
+cp -r ~/playground-master/app /var/www/app
+cp -r ~/playground-master/app_data /var/www/app_data
+cp -r ~/playground-master/html/. /var/www/html
+cp -r ~/playground-master/scripts /var/www/scripts
+mkdir /var/www/html/sites
+ls /var/www
+ls -la /var/www/html
+
+# Instalar o FastSitePHP (~470 kb) e suas Dependências (~20 - 40 kb)
+# Isto também gera o arquivo [app_data/.env]
+sudo apt install php7.2-zip
+php /var/www/scripts/install.php
+
+# Apague a página padrão do Apache
+sudo rm /var/www/html/index.html
+
+# Depois de copiar os arquivos, permissões precisam ser redefinidas.
+# Se testar localmente no servidor sem UI client client-side, isto
+# é necessário para que possa editar arquivos criados pelo web service.
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Confirure um Cron Job utilizando sudo para procurar e apagar sites expirados.
+# Rode uma vez por minuto, se não estiver utilizando [sudo] os sites não serão
+# apagados.
+sudo crontab -e
+# Entre [1] para nano, e adicione o seguinte depois do comentários do cabeçalho:
+* * * * * php /var/www/scripts/delete-expired-sites.php
+
+# Para ver o histórico do cron:
+grep CRON /var/log/syslog
+
+# Visualize os últimos resultados e diretório dos sites:
+cat /var/www/app_data/delete-sites-last-result.txt
+cd /var/www/html/sites
+ls -la
+
+# Atualize o arquivo JavaScript Local do Playground com a nova URL
+# Busque por "localhost:8888" ou "urlRoot:" no arquivo e faça as
+# modificações relacionadas
+#
+# Arquivo:
+#    Website\public\js\page-playground.js
+# Exemplo:
+#   urlRoot: 'http://52.37.34.134/',
+
+# Teste o site à partir da UI do Code Playground UI para verificar que funciona
+
+# Mantenha um site ativo por uma hora, então verifique se é apagado automaticamente
+cat /var/www/app_data/delete-sites-last-result.txt
+ls -la /var/www/html/sites
+
+# Baixe scripts de atualização HTML
+# Utilizado para atualizar o modelo do site quando novas versões do CDN
+# são pulicadas
+cd /var/www/scripts
+wget https://raw.githubusercontent.com/dataformsjs/website/master/scripts/update-html-files-cdn-version.php
+
+# Passos Adicionais realizados para o site em produção
+https://playground.dataformsjs.com/
+
+# 1) Criado um IP Estático no AWS Lightsail para o Servidor: 52.37.34.134
+# 2) GoDaddy - Adicionado um A Record para 'playground' que aponta para o IP
+# 3) Atualizar o AWS para permitir HTTPS no Firewall na Aba Networking
+# 4) Instalado o Certificado HTTPS utilizando certbot:
+#    https://certbot.eff.org/lets-encrypt/ubuntubionic-apache
+#    Host: playground.dataformsjs.com
+
+# Alêm disso um script shell é utilizado para sincronizar mudanças do GitHub
+# com o servidor
+https://github.com/dataformsjs/playground/blob/master/scripts/sync-server-from-github.sh
