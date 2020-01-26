@@ -1,11 +1,31 @@
-# 🌟 DataFormsJS Playground
+# :star2: DataFormsJS Playground
 
 **Thanks for visiting!** 🌠👍
 
-This repository contains playground website for DataFormsJS. The UI (User Interface) exists on the main website in the main Website repository, while this repository only contains code that exists on the separate playground web server.
-
 * __Playground UI__: https://www.dataformsjs.com/en/playground
 * __Playground Server__: https://playground.dataformsjs.com
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>en - English</strong><br> This repository contains playground website for DataFormsJS. The UI (User Interface) exists on the main website in the main Website repository, while this repository only contains code that exists on the separate playground web server.</td>
+    </tr>
+    <tr>
+      <td lang="es"><strong>es - Español</strong><br> Este repositorio contiene un sitio web de juegos para DataFormsJS. La interfaz de usuario (UI) existe en el sitio web principal en el repositorio principal del sitio web, mientras que este repositorio solo contiene código que existe en el servidor web del patio de juegos separado.</td>
+    </tr>
+    <tr>
+      <td lang="pt-BR"><strong>pt-BR - Português (do Brasil)</strong><br> Este repositório contém site de playground para DataFormsJS. A interface do usuário (Interface do usuário) existe no site principal no repositório principal do site, enquanto esse repositório contém apenas o código existente no servidor da Web de playground separado.</td>
+    </tr>
+    <tr>
+      <td lang="ja"><strong>ja - 日本語</strong><br> このリポジトリには、DataFormsJSのプレイグラウンドWebサイトが含まれています。 UI（ユーザーインターフェイス）はメインWebサイトリポジトリのメインWebサイトに存在しますが、このリポジトリには、別個のプレイグラウンドWebサーバーに存在するコードのみが含まれます。</td>
+    </tr>
+    <!--
+    <tr>
+      <td lang="{iso}"><strong>{iso} - {lang}</strong><br> {content}</td>
+    </tr>
+    -->
+  </tbody>
+</table>
 
 ## :desktop_computer: Running Locally
 
