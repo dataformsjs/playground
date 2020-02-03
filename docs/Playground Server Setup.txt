@@ -1,9 +1,9 @@
 
 # ------------------------------------------------------------------------------------
-#   
+#
 #   This file describes step by step how the Playground Server is setup.
 #   This commands can be ran from a web based terminal such as AWS Lightsail.
-#   
+#
 #   These instructions assume the Linux OS: Ubuntu 18.04 LTS
 #
 # ------------------------------------------------------------------------------------
@@ -115,8 +115,8 @@ cat /var/www/app_data/delete-sites-last-result.txt
 cd /var/www/html/sites
 ls -la
 
-# Update Local Playground JavaScript File with the new URL 
-# Seach for "localhost:8888" or "urlRoot:" in the file and make related changes
+# Update Local Playground JavaScript File with the new URL
+# Search for "localhost:8888" or "urlRoot:" in the file and make related changes
 #
 # File:
 #    Website\public\js\page-playground.js
