@@ -1,0 +1,41 @@
+{{#if isLoading}}<div data-template-id="loading-screen"></div>{{/if}}
+{{#if hasError}}<div data-template-id="error-screen"></div>{{/if}}
+{{#if isLoaded}}
+    <h1>Countries</h1>
+
+    <input
+        data-filter-selector="table"
+        data-filter-results-text-selector="h1"
+        data-filter-results-text-all="{totalCount} Countries"
+        data-filter-results-text-filtered="Showing {displayCount} of {totalCount} Countries"
+        placeholder="Enter filter, example 'North America'">
+
+    <table
+        data-sort
+        data-sort-class-odd="row-odd"
+        data-sort-class-even="row-even">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th class="text-right">Size (KM)</th>
+                <th class="text-right">Population</th>
+                <th>Continent</th>
+            </tr>
+        </thead>
+        <tbody class="click-to-highlight">
+            {{#each countries}}
+            <tr>
+                <td>{{iso}}</td>
+                <td>
+                    <i class="{{lowerCase iso}} flag"></i>
+                    {{country}}
+                </td>
+                <td class="text-right" data-value="{{area_km}}">{{formatNumber area_km}}</td>
+                <td class="text-right" data-value="{{population}}">{{formatNumber population}}</td>
+                <td>{{continent}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/if}}

@@ -1,0 +1,35 @@
+<!--
+	HTML Control
+	
+	该文件通过以下代码从[cal-page.htm]加载:
+		<div data-template-url="calc-result.htm"></div>
+
+	然后,通过调用JavaScript,可以在模型更新后重新渲染此文件:
+		app.refreshAllHtmlControls()
+		app.refreshHtmlControl(document.querySelector("[data-template-url='calc-result.htm']"))
+
+	要测试它,请打开计算器页面,计算器一个或多个结果,
+	然后从浏览器的开发工具中运行以下命令:
+		app.activeModel.results = [];
+		app.refreshAllHtmlControls();
+
+	刷新HTML控件时可以传递可选的回调和数据模型:
+		app.refreshAllHtmlControls(callback, model)
+		app.refreshHtmlControl(element, callback, model)
+
+	当将DataFormsJS Framework与模板引擎
+	(Handlebars, Underscore, Nunjucks)配合使用时,使用HTML控件
+	使用HTML控件可以很好地重用HTML代码并保持项目的组织性.
+	在使用DataFormsJS框架时,
+	建议HTML控件对刷新页面的各个部分具有完全的控制.
+ 		
+-->
+{{#if results}}
+    <section class="calc-result">
+        <ul>
+            {{#each results}}
+                <li {{#if hasError}}class="error"{{/if}}>{{x}} {{op}} {{y}} = {{z}}</li>
+            {{/each}}
+        </ul>
+    </section>
+{{/if}}

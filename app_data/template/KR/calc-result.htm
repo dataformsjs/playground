@@ -1,0 +1,35 @@
+<!--
+	HTML Control
+	
+	This file gets loaded from [cal-page.htm] by the following code:
+		<div data-template-url="calc-result.htm"></div>
+
+	Then from JavaScript this file can be re-rendered
+	after model updates by calling:
+		app.refreshAllHtmlControls()
+		app.refreshHtmlControl(document.querySelector("[data-template-url='calc-result.htm']"))
+
+	To test it open the Calculator Page, calculator one or more results,
+	then run the following from your Browser's Dev Tools:
+		app.activeModel.results = [];
+		app.refreshAllHtmlControls();
+
+	Optional callbacks and data models can be passed when refreshing HTML controls:
+		app.refreshAllHtmlControls(callback, model)
+		app.refreshHtmlControl(element, callback, model)
+
+	When using the DataFormsJS Framework with a templating engine
+	(Handlebars, Underscore, Nunjucks) using HTML Controls works
+	well to re-use HTML code and keep your project organized.
+	When using the DataFormsJS Framework HTML Controls are recommended
+ 	to have full control over refreshing individual parts of a page.	
+-->
+{{#if results}}
+    <section class="calc-result">
+        <ul>
+            {{#each results}}
+                <li {{#if hasError}}class="error"{{/if}}>{{x}} {{op}} {{y}} = {{z}}</li>
+            {{/each}}
+        </ul>
+    </section>
+{{/if}}

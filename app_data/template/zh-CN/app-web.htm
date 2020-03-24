@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<!----------------------------------------------------------------------------------------
+	这个演示使用DataFormsJS Web组件来显示JSON服务中的数据.Web组件可以在新版浏览器中工作,
+	对于使用旧浏览器的用户会提示一个友好的警告.
+---------------------------------------------------------------------------------------->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Code Playground Site - Web Components</title>
+        <link rel="stylesheet" href="site.css">
+        <link rel="shortcut icon" href="../../favicon.ico" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css">
+        <style>
+            /* Prevent custom web components from appearing during rendering include the following CSS */
+            json-data:not(:defined),
+            is-loading:not(:defined),
+            has-error:not(:defined),
+            is-loaded:not(:defined) { display:none; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a class="active" href="#/">主页</a>
+                <a href="#/data">数据示例</a>
+                <a href="#/demos">其他演示</a>
+            </nav>
+        </header>
+
+        <main id="view" class="container"></main>
+        
+        <footer>
+            <p class="year"></p>
+            <p class="now"></p>
+        </footer>
+
+        <url-hash-router view-selector="#view">
+            <url-hash-route path="/">
+                <template>
+                    <h1>Hello World</h1>
+                    <div class="home-page-animation">
+                        <img src="sun.svg" class="sun">
+                        <div class="orbit">
+                            <img src="planet.svg" class="planet">
+                            <img src="moon.svg" class="moon">
+                        </div>
+                    </div>
+                </template>
+            </url-hash-route>
+
+            <url-hash-route path="/data" src="data-web.htm"></url-hash-route>
+            
+            <url-hash-route path="/demos">
+                <template>
+                    <h1>Other Demos</h1>
+                    <ul class="demos">
+                        <li><a href="app.htm">Handlebars</a></li>
+                        <li><a href="app-vue.htm">Vue + GraphQL</a></li>
+                        <li><a href="app-react.htm">React</a></li>
+                    </ul>
+                </template>
+            </url-hash-route>
+        </url-hash-router>
+
+        <!--
+            DataFormsJS Web Components
+            https://www.dataformsjs.com
+        -->
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/url-hash-router.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/json-data.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/data-table.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/input-filter.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/sortable-table.min.js"></script>
+
+        <!-- 旧浏览器(IE, Older Mobile Devices等)会看到一个警告 -->
+        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/safari-nomodule.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/old-browser-warning.min.js"></script>
+
+        <!-- 加载或更改页面时更新内容 -->
+        <script type="module">
+            import { componentsAreSetup } from 'https://cdn.jsdelivr.net/npm/dataformsjs@4.0.1/js/web-components/utils.min.js';
+            
+            const router = document.querySelector('url-hash-router');
+            router.addEventListener('contentLoaded', updateContent);
+            updateContent();
+            
+            function updateContent() {
+                updateNavLinks();
+                updateFooter();
+                setupTableImages();
+            }
+
+            function updateNavLinks() {
+                const navLinks = document.querySelectorAll('nav a');
+                for (const link of navLinks) {
+                    link.className = (window.location.hash === link.getAttribute('href') ? 'active' : '');
+                }
+            }
+            
+            function updateFooter() {
+                const now = new Date();
+                document.querySelector('footer .year').textContent = now.getFullYear();
+                document.querySelector('footer .now').textContent = now;
+            }
+            
+            // 在每次hash/route更改并第一次打开页面时调用
+            function setupTableImages() {
+                const jsonData = document.querySelector('json-data');
+                if (jsonData !== null) {
+                    // [contentReady === true] can happen on the first page load if the
+                    // data loads very fast - (before <script type="module"> finished loading).
+                    if (jsonData.contentReady) {
+                        showTableImages();
+                    } else {
+                        jsonData.addEventListener('contentReady', showTableImages);
+                    }
+                }
+            }
+
+            // 渲染后,将图标添加到<table>中。
+            async function showTableImages(e) {
+                // 等到所有Web组件都安装完毕
+                await componentsAreSetup();
+
+                // 如果页面没有表，则退出
+                const table = document.querySelector('table');
+                if (table === null || table.tBodies === null || table.tBodies.length !== 1) {
+                    return;
+                }
+
+                // 国家/地区代码(ISO)是否来自网址参数?
+                let pageIso = null;
+                if (e && e.target && e.target.urlParams) {
+                    pageIso = JSON.parse(e.target.urlParams);
+                    pageIso = (pageIso.country ? pageIso.country.toLowerCase() : null);
+                }
+                
+                // 将标志添加到所有行
+                const tableRows = table.tBodies[0].rows;
+                const rowCount = tableRows.length;
+                for (let x = 0; x < rowCount; x++) {
+                    const row = tableRows[x];
+                    const iso = (pageIso ? pageIso : row.cells[0].textContent.trim().toLowerCase());
+                    const flag = document.createElement('i');
+                    flag.className = iso + ' flag';
+                    row.cells[1].insertAdjacentElement('afterbegin', flag);
+                }
+            }   
+        </script>
+    </body>
+</html>
