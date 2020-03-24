@@ -1,0 +1,26 @@
+<!--
+	[app-vue.htm]演示上"计算器"页面的Vue模板源.
+	此文件类似于[calc-page.htm]和[calc-result.htm], 
+	但是,Vue会根据模型更改来动态更新<ul>,因此不需要单独的HTML控件(calc-result.htm).
+-->
+<h1>计算器</h1>
+
+<section class="calc">
+    <input v-model="currentX" placeholder="Value X" size="7">
+    <select v-model="currentOp">
+        <option value="+">加 (+)</option>
+        <option value="-">减 (-)</option>
+        <option value="*">乘 (*)</option>
+        <option value="/">除 (/)</option>
+    </select>
+    <input v-model="currentY" placeholder="Value Y" size="7">
+    <button v-on:click="calculateResult">计算</button>
+</section>
+
+<section class="calc-result" v-if="results.length" v-cloak>
+    <ul>
+        <li v-for="item in results" v-bind:class="item.hasError ? 'error' : ''">
+            {{ item.x }} {{ item.op }} {{ item.y }} = {{ item.z }}
+        </li>
+    </ul>
+</section>

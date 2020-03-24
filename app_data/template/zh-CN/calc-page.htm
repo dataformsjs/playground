@@ -1,0 +1,25 @@
+<!--
+	主[app.htm]演示中计算器页的HTML源代码.
+
+	此文件仅在第一次使用打开页面时加载: 
+        <script type="text/x-template"
+            data-engine="handlebars"
+            data-route="/calc"
+            src="calc-page.htm">
+        </script>
+-->
+<h1>Calculator</h1>
+
+<section class="calc">
+    <input data-bind="currentX" placeholder="Value X" size="7">
+    <select data-bind="currentOp">
+        <option value="+">加 (+)</option>
+        <option value="-">减 (-)</option>
+        <option value="*">乘 (*)</option>
+        <option value="/">除 (/)</option>
+    </select>
+    <input data-bind="currentY" placeholder="Value Y" size="7">
+    <button>计算</button>
+</section>
+
+<div data-template-url="calc-result.htm"></div>
