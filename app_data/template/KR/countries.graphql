@@ -1,9 +1,0 @@
-{
-    countries {
-        iso
-        country
-        area_km
-        population
-        continent
-    }
-}
