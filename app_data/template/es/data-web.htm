@@ -6,7 +6,8 @@
 
 <json-data
     url="https://www.dataformsjs.com/data/geonames/countries"
-    load-only-once="true">
+    load-only-once="true"
+    class="mw-100pct">
     <is-loading>
         <span class="loading">Cargando...</span>
     </is-loading>
@@ -24,6 +25,7 @@
 
         <data-table
             data-bind="countries"
+            highlight-class="highlight"
             col-link-template="#/regions/:iso"
             labels="Código, Nombre, Tamaño (KM), Población, Continente"
             table-attr="is=sortable-table,

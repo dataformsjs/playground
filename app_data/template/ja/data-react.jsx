@@ -1,3 +1,13 @@
+// Basic function to allow row onClick events to highlight the selected row.
+// This allows a user to easily see where they are on wide rows or mobile devices.
+// Based on DataFormJS [clickToHighlight] Plugin: [js/plugins/clickToHighlight.js]
+function toggleHighlight(e) {
+    if (e.target.nodeName === 'A') {
+        return;
+    }
+    e.currentTarget.classList.toggle('highlight');
+}
+
 export function ShowCountries(props) {
     return (
         <React.Fragment>
@@ -25,7 +35,7 @@ export function ShowCountries(props) {
                 <tbody>
                     {props.data && props.data.countries && props.data.countries.map(country => {
                         return (
-                            <tr key={country.iso}>
+                            <tr key={country.iso} onClick={toggleHighlight} className="pointer">
                                 <td>{country.iso}</td>
                                 <td>
                                     <i class={country.iso.toLowerCase() + ' flag'}></i>

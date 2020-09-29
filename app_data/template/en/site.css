@@ -129,6 +129,8 @@ a:hover { color:var(--medium-color); text-decoration:none; }
 
 .text-right { text-align:right; }
 .error { background-color:red; color:white; padding:1em; border:1px solid darkred; }
+.mw-100pct { max-width: 100%; }
+.pointer { cursor: pointer; }
 
 /********** Home Page Animation **********/
 
