@@ -29,7 +29,7 @@ html, body, #root { height:100%; margin:0; }
     a:visited { color: rgb(32, 48, 64); }
     a:hover { color: hsla(210, 33%, 38%, 1); }
     nav a:hover { color: #fff; }
-    
+
     /*
         DataFormsJS configurará esto manualmente en elementos individuales para IE,
         sin embargo, dado que no se hizo en el archivo CSS principal o en la página,
@@ -101,7 +101,7 @@ section {
 }
 
 input, select, button { padding:.5em 1em; margin:.5em; }
-input {
+input:not([type="radio"]):not([type="checkbox"]) {
     padding: 0.5em 1em;
     border-radius: 2em;
     width: 100%;
@@ -110,6 +110,14 @@ input {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5), 0 0 2px 1px rgba(0, 0, 0, 0.1);
     border: none;
     background-color: #eff;
+    /* For Safari on iOS */
+    -webkit-appearance: none;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 2em;
+    height: 2em;
 }
 
 a,
@@ -250,7 +258,7 @@ table tbody tr:nth-child(odd) { background-color: var(--lightest-color); }
 table tbody tr:nth-child(even) { background-color: #fff; }
 
 /* Los complementos [sort] y [filter] agregan clases a cada fila según la
-   visualización del elemento y el orden de clasificación que anulan [:nth-child()] */ 
+   visualización del elemento y el orden de clasificación que anulan [:nth-child()] */
 table tbody tr.row-odd { background-color: var(--lightest-color); }
 table tbody tr.row-even { background-color: #fff; }
 

@@ -29,7 +29,7 @@ html, body, #root { height:100%; margin:0; }
     a:visited { color: rgb(32, 48, 64); }
     a:hover { color: hsla(210, 33%, 38%, 1); }
     nav a:hover { color: #fff; }
-    
+
     /*
     	DataFormsJS will manually set this on individual elements for IE,
     	however since it not done in the main CSS file or on the page then
@@ -102,7 +102,7 @@ section {
 }
 
 input, select, button { padding:.5em 1em; margin:.5em; }
-input {
+input:not([type="radio"]):not([type="checkbox"]) {
     padding: 0.5em 1em;
     border-radius: 2em;
     width: 100%;
@@ -111,6 +111,14 @@ input {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5), 0 0 2px 1px rgba(0, 0, 0, 0.1);
     border: none;
     background-color: #eff;
+    /* For Safari on iOS */
+    -webkit-appearance: none;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 2em;
+    height: 2em;
 }
 
 a,
@@ -251,7 +259,7 @@ table tbody tr:nth-child(odd) { background-color: var(--lightest-color); }
 table tbody tr:nth-child(even) { background-color: #fff; }
 
 /* [sort] and [filter] plugins add classes to each row based on element
-    display and sort order which override [:nth-child()] */ 
+    display and sort order which override [:nth-child()] */
 table tbody tr.row-odd { background-color: var(--lightest-color); }
 table tbody tr.row-even { background-color: #fff; }
 
