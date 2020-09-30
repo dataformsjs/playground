@@ -98,7 +98,7 @@
                 //     v-on:click="calculateResult"
                 // 但是,如果没有使用[v-on]事件,
                 // 下面的方法也适用于Vue.
-                if (app.activeController.viewEngine !== 'Vue') {
+                if (!app.isUsingVue()) {
                     document.querySelector('button').onclick = this.calculateResult.bind(this);
                 }
             },

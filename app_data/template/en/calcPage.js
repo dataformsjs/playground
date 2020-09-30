@@ -100,7 +100,7 @@
                 //     v-on:click="calculateResult"
                 // However the following would also work with Vue if the [v-on]
                 // event was not used.
-                if (app.activeController.viewEngine !== 'Vue') {
+                if (!app.isUsingVue()) {
                     document.querySelector('button').onclick = this.calculateResult.bind(this);
                 }
             },
