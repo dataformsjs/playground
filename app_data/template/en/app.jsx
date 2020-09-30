@@ -1,6 +1,6 @@
 {/*
 	JavaScript/JSX Code used with the [app-react.htm] demo
-    
+
     The <ErrorBoundary> component provides Error Boundaries to help
     solve and display React Component Errors. However if you have
     a syntax error with this file that prevents it from being
@@ -41,8 +41,20 @@ function DataPage() {
             url="https://www.dataformsjs.com/data/geonames/countries"
             isLoading={<ShowLoading />}
             hasError={<ShowError />}
-            isLoaded={<ShowCountries />}
+            isLoaded={<LazyLoadDataPage />}
             loadOnlyOnce={true} />
+    );
+}
+
+// Load and compile [data-react.jsx] the first time the page is accessed
+function LazyLoadDataPage(props) {
+    return (
+        <LazyLoad
+            scripts="data-react.jsx"
+            isLoading={<ShowLoading />}
+            isLoaded="ShowCountries"
+            data={props.data}
+            params={props.params} />
     );
 }
 

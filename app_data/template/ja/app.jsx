@@ -41,8 +41,20 @@ function DataPage() {
             url="https://www.dataformsjs.com/data/geonames/countries"
             isLoading={<ShowLoading />}
             hasError={<ShowError />}
-            isLoaded={<ShowCountries />}
+            isLoaded={<LazyLoadDataPage />}
             loadOnlyOnce={true} />
+    );
+}
+
+// Load and compile [data-react.jsx] the first time the page is accessed
+function LazyLoadDataPage(props) {
+    return (
+        <LazyLoad
+            scripts="data-react.jsx"
+            isLoading={<ShowLoading />}
+            isLoaded="ShowCountries"
+            data={props.data}
+            params={props.params} />
     );
 }
 
