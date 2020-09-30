@@ -29,6 +29,16 @@ html, body, #root { height:100%; margin:0; }
     a:visited { color: rgb(32, 48, 64); }
     a:hover { color: hsla(210, 33%, 38%, 1); }
     nav a:hover { color: #fff; }
+    thead { background-color: hsla(210, 33%, 38%, 1); }
+    th, td { border:1px solid hsla(210, 33%, 76%, 1); }
+    table tbody tr:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
+    table tbody tr.row-odd { background-color: hsla(210, 33%, 90%, 1) !important; }
+    table tbody tr.highlight { background-color:#ff0 !important; }
+    
+    /* Flexbox Issue */
+    .calc input,
+    .calc select,
+    .calc button { width: 100%; }
 
     /*
         DataFormsJS configurará esto manualmente en elementos individuales para IE,
@@ -204,13 +214,13 @@ a:hover { color:var(--medium-color); text-decoration:none; }
 .calc { display:flex; align-items: center; flex-direction:column; }
 .calc input,
 .calc select,
-.calc button { margin:10px 0; width:100%; }
+.calc button { margin:10px 0; }
 
 @media (min-width: 800px) {
     .calc { flex-direction:row; }
     .calc input,
     .calc select,
-    .calc button { margin:0 20px; width:auto; }
+    .calc button { margin:0 20px; }
 }
 
 .calc-result ul {
