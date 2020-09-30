@@ -131,20 +131,6 @@
                     return;
                 }
 
-                // Find Number and Date Columns so the data can be formatted
-                const updateCols = [];
-                const cells = table.tHead.rows[0].cells;
-                const colCount = cells.length;
-                for (let x = 0; x < colCount; x++) {
-                    switch (cells[x].textContent) {
-                        case 'Size (KM)':
-                        case 'Population':
-                            updateCols.push(x);
-                            break;
-                    }
-                }
-                const updateColLen = updateCols.length;
-
                 // Does Country Code (ISO) come from URL Parameters?
                 let pageIso = null;
                 if (e && e.target && e.target.urlParams) {
