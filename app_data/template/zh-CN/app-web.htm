@@ -152,7 +152,6 @@
 
                 for (const row of table.tBodies[0].rows) {
                     // 将标志添加到所有行
-                    const row = tableRows[x];
                     const iso = (pageIso ? pageIso : row.cells[0].textContent.trim().toLowerCase());
                     const flag = document.createElement('i');
                     flag.className = iso + ' flag';
