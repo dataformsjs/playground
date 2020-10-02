@@ -27,8 +27,8 @@ export function ShowCountries(props) {
                     <tr>
                         <th>Code</th>
                         <th>Name</th>
-                        <th class="text-right">Size (KM)</th>
-                        <th class="text-right">Population</th>
+                        <th className="text-right">Size (KM)</th>
+                        <th className="text-right">Population</th>
                         <th>Continent</th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@ export function ShowCountries(props) {
                             <tr key={country.iso} onClick={toggleHighlight} className="pointer">
                                 <td>{country.iso}</td>
                                 <td>
-                                    <i class={country.iso.toLowerCase() + ' flag'}></i>
+                                    <i className={country.iso.toLowerCase() + ' flag'}></i>
                                     <span>{country.country}</span>
                                 </td>
                                 <td className="text-right" data-value={country.area_km}>{format.number(country.area_km)}</td>
