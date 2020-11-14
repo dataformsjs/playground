@@ -4,6 +4,10 @@
     Esta demostración utiliza DataFormsJS Web Components para mostrar datos de un
     servicio JSON. Los Web Components funcionan en navegadores modernos y se muestra
     una advertencia amigable para los usuarios con navegadores más antiguos.
+
+	This demo uses DataFormsJS Web Components to display data from a JSON Service.
+	Web Components work in modern browsers and a polyfill that uses the DataFormsJS
+	Framework can be used for users with older browsers.
 ---------------------------------------------------------------------------------------->
     <head>
         <meta charset="utf-8">
@@ -36,8 +40,8 @@
             <p class="now"></p>
         </footer>
 
-        <url-hash-router view-selector="#view">
-            <url-hash-route path="/">
+        <url-router view-selector="#view">
+            <url-route path="/">
                 <template>
                     <h1>Hola Mundo</h1>
                     <div class="home-page-animation">
@@ -48,11 +52,11 @@
                         </div>
                     </div>
                 </template>
-            </url-hash-route>
+            </url-route>
 
-            <url-hash-route path="/data" src="data-web.htm"></url-hash-route>
+            <url-route path="/data" src="data-web.htm"></url-route>
 
-            <url-hash-route path="/demos">
+            <url-route path="/demos">
                 <template>
                     <h1>Otras demostraciones</h1>
                     <ul class="demos">
@@ -61,43 +65,29 @@
                         <li><a href="app-react.htm">React</a></li>
                     </ul>
                 </template>
-            </url-hash-route>
-        </url-hash-router>
+            </url-route>
+        </url-router>
 
         <!--
             DataFormsJS Web Components
             https://www.dataformsjs.com
         -->
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/url-hash-router.min.js"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/json-data.min.js"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/data-table.min.js"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/input-filter.min.js"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/sortable-table.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/url-router.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/json-data.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/data-table.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/input-filter.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/sortable-table.min.js"></script>
+        <script nomodule src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/polyfill.min.js"></script>
 
         <!-- Los navegadores más antiguos (IE, dispositivos móviles más antiguos, etc.) verán una advertencia -->
-        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/safari-nomodule.min.js"></script>
-        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/old-browser-warning.min.js"></script>
+        <!-- Optional - Show a warning for Older browsers (IE, Older Mobile Devices, etc) -->
+        <!--
+        <script nomodule src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/old-browser-warning.min.js"></script>
+        -->
 
         <!-- Actualizar contenido cuando la página se carga o cambia -->
-        <script type="module">
-            import { componentsAreSetup } from 'https://cdn.jsdelivr.net/npm/dataformsjs@4.8.0/js/web-components/utils.min.js';
-
-            const router = document.querySelector('url-hash-router');
-            router.addEventListener('contentLoaded', updateContent);
-            updateContent();
-
-            function updateContent() {
-                updateNavLinks();
-                updateFooter();
-                setupTableImages();
-            }
-
-            function updateNavLinks() {
-                const navLinks = document.querySelectorAll('nav a');
-                for (const link of navLinks) {
-                    link.className = (window.location.hash === link.getAttribute('href') ? 'active' : '');
-                }
-            }
+        <script>
+            'use strict';
 
             function updateFooter() {
                 const now = new Date();
@@ -105,68 +95,10 @@
                 document.querySelector('footer .now').textContent = now;
             }
 
-            // Se llama cuando la página se abre por primera vez en cada cambio de hash / ruta
-            function setupTableImages() {
-                const jsonData = document.querySelector('json-data');
-                if (jsonData !== null) {
-                    // [contentReady === true] puede suceder en la carga de la primera página
-                    // si los datos se cargan muy rápido - (antes de que <script type="module">
-                    // finalice la carga).
-                    if (jsonData.contentReady) {
-                        updateTableContent();
-                    } else {
-                        jsonData.addEventListener('contentReady', updateTableContent);
-                    }
-                }
-            }
-
-            // Agregue imágenes de marca a la <table> una vez que se haya procesado.
-            async function updateTableContent(e) {
-                // Espere hasta que todos los Web Components estén configurados
-                await componentsAreSetup();
-
-                // Salir si la página no tiene tabla
-                const table = document.querySelector('table');
-                if (table === null || table.tBodies === null || table.tBodies.length !== 1) {
-                    return;
-                }
-
-                // ¿El código de país (ISO) proviene de los parámetros de URL?
-                let pageIso = null;
-                if (e && e.target && e.target.urlParams) {
-                    pageIso = JSON.parse(e.target.urlParams);
-                    pageIso = (pageIso.country ? pageIso.country.toLowerCase() : null);
-                }
-
-                // Find Number and Date Columns so the data can be formatted
-                const updateCols = [];
-                const cells = table.tHead.rows[0].cells;
-                const colCount = cells.length;
-                for (let x = 0; x < colCount; x++) {
-                    switch (cells[x].textContent) {
-                        case 'Tamaño (KM)':
-                        case 'Population':
-                            updateCols.push(x);
-                            break;
-                    }
-                }
-                const updateColLen = updateCols.length;
-
-                for (const row of table.tBodies[0].rows) {
-                    // Agregar banderas a todas las filas
-                    const iso = (pageIso ? pageIso : row.cells[0].textContent.trim().toLowerCase());
-                    const flag = document.createElement('i');
-                    flag.className = iso + ' flag';
-                    row.cells[1].insertAdjacentElement('afterbegin', flag);
-
-                    // Format Numbers
-                    for (let y = 0; y < updateColLen; y++) {
-                        const numValue = row.cells[updateCols[y]].textContent;
-                        row.cells[updateCols[y]].setAttribute('data-value', numValue); // Value for Sorting
-                        row.cells[updateCols[y]].textContent = Number(numValue).toLocaleString(); // Value for Display
-                    }
-                }
-            }
+            // Handle routing changes from <url-router>
+            document.addEventListener('app:routeChanged', function() {
+                updateFooter();
+            });
         </script>
     </body>
 </html>

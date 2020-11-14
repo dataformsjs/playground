@@ -1,0 +1,31 @@
+<!--
+    TODO - new - in active development
+-->
+<h1>Calculator</h1>
+
+<section class="calc">
+    <input id="current-x" placeholder="Value X" size="7">
+    <select id="current-op">
+        <option value="+">Add (+)</option>
+        <option value="-">Subtract (-)</option>
+        <option value="*">Multiply (*)</option>
+        <option value="/">Divide (/)</option>
+    </select>
+    <input id="current-y" placeholder="Value Y" size="7">
+    <button onclick="calculateResult()">Calculate</button>
+</section>
+
+<section class="calc-result" data-show="typeof results !== 'undefined' && results.length">
+    <data-list
+		data-bind="results"
+        template-selector="#results-item"
+        list-item-name="item"
+        root-element="ul">
+    </data-list>
+    
+    <template id="results-item">
+        <li class="${item.hasError ? 'error' : ''}">
+            ${item.x} ${item.op} ${item.y} = ${item.z}
+        </li>
+    </template>
+</section>
