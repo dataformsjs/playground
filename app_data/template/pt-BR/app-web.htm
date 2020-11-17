@@ -24,12 +24,17 @@
         <header>
             <nav>
                 <a class="active" href="#/">Home</a>
+                <a href="#/calc">Calculator</a>
                 <a href="#/data">Data Example</a>
                 <a href="#/demos">Other Demos</a>
             </nav>
         </header>
 
         <main id="view" class="container"></main>
+
+        <template id="loading-screen">
+            <h3 class="loading">Loading...</h3>
+        </template>
 
         <footer>
             <p class="year"></p>
@@ -50,7 +55,16 @@
                 </template>
             </url-route>
 
-            <url-route path="/data" src="data-web.htm"></url-route>
+            <url-route path="/calc"
+                src="calc-web.htm"
+                lazy-load="calc_page, data_list"
+                onload="setupCalcPage()">
+            </url-route>
+
+            <url-route path="/data"
+                src="data-web.htm"
+                lazy-load="data_table, json_data, input_filter, sortable_table">
+            </url-route>
 
             <url-route path="/demos">
                 <template>
@@ -68,12 +82,19 @@
             DataFormsJS Web Components
             https://www.dataformsjs.com
         -->
-        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/url-router.min.js"></script>
-        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/json-data.min.js"></script>
-        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/data-table.min.js"></script>
-        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/input-filter.min.js"></script>
-        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/sortable-table.min.js"></script>
-        <script nomodule src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/polyfill.min.js"></script>
+        <script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/url-router.js"></script>
+		<script type="module" src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/spa-links.js"></script>
+        <script nomodule src="https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/polyfill.js"></script>
+        <script>
+            window.lazyLoad = {
+                calc_page: 'calc-page-web.js',
+                data_list: { module: 'https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/data-list.js' },
+                data_table: { module: 'https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/data-table.js' },
+                json_data: { module: 'https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/json-data.js' },
+                input_filter: { module: 'https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/input-filter.js' },
+                sortable_table: { module: 'https://dataformsjs.s3-us-west-1.amazonaws.com/js/pre-release/5.0.0/web-components/sortable-table.js' },
+            };
+        </script>
 
         <!-- Optional - Show a warning for Older browsers (IE, Older Mobile Devices, etc) -->
         <!--

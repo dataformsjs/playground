@@ -34,7 +34,7 @@ html, body, #root { height:100%; margin:0; }
     table tbody tr:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
     table tbody tr.row-odd { background-color: hsla(210, 33%, 90%, 1) !important; }
     table tbody tr.highlight { background-color:#ff0 !important; }
-    
+
     /* Flexbox Issue */
     .calc input,
     .calc select,
@@ -76,8 +76,9 @@ nav a {
     border-radius: 4px;
     box-shadow: 0 0 2px 2px rgba(0,0,0,.5);
 }
+nav a.active { background-color: var(--light-color); }
 nav a:hover {
-    background-color: var(--light-color);
+    background-color: var(--lightest-color);
     text-decoration: underline;
     box-shadow: 0 0 4px 4px rgba(0,0,0,.7);
 }
