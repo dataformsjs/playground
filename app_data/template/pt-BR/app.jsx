@@ -46,11 +46,14 @@ function DataPage() {
     );
 }
 
-// Load and compile [data-react.jsx] the first time the page is accessed
+// Load and compile [data-react.jsx] the first time this page is accessed
 function LazyLoadDataPage(props) {
     return (
         <LazyLoad
-            scripts="data-react.jsx"
+            scripts={[
+                "data-react.jsx",
+                "https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css",
+            ]}
             isLoading={<ShowLoading />}
             isLoaded="ShowCountries"
             data={props.data}

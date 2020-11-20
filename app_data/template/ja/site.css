@@ -13,6 +13,7 @@ html, body, #root { height:100%; margin:0; }
 :root {
     --dark-color: rgb(32, 48, 64);
     --medium-color: hsla(210, 33%, 38%, 1);
+    --medium-color-2: hsla(210, 33%, 60%, 1);
     --light-color: hsla(210, 33%, 76%, 1);
     --lightest-color: hsla(210, 33%, 90%, 1);
 }
@@ -76,9 +77,9 @@ nav a {
     border-radius: 4px;
     box-shadow: 0 0 2px 2px rgba(0,0,0,.5);
 }
-nav a.active { background-color: var(--light-color); }
+nav a.active { background-color: var(--medium-color-2); }
 nav a:hover {
-    background-color: var(--lightest-color);
+    background-color: var(--light-color);
     text-decoration: underline;
     box-shadow: 0 0 4px 4px rgba(0,0,0,.7);
 }

@@ -11,7 +11,6 @@
         <title>Code Playground Site - Web Components</title>
         <link rel="stylesheet" href="site.css">
         <link rel="shortcut icon" href="../../favicon.ico" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css">
         <style>
             /* Prevent custom web components from appearing during rendering include the following CSS */
             json-data:not(:defined),
@@ -63,7 +62,7 @@
 
             <url-route path="/data"
                 src="data-web.htm"
-                lazy-load="data_table, json_data, input_filter, sortable_table">
+                lazy-load="data_table, json_data, input_filter, sortable_table, flags">
             </url-route>
 
             <url-route path="/demos">
@@ -93,6 +92,7 @@
                 json_data: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.0.1/js/web-components/json-data.min.js' },
                 input_filter: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.0.1/js/web-components/input-filter.min.js' },
                 sortable_table: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.0.1/js/web-components/sortable-table.min.js' },
+                flags: 'https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css',
             };
         </script>
         <!-- Optional - Show a warning for Older browsers (IE, Older Mobile Devices, etc) -->
