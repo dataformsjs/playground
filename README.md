@@ -1,4 +1,4 @@
-# :star2: DataFormsJS Playground
+# 🌟 DataFormsJS Playground
 
 **Thanks for visiting!** 🌠👍
 
@@ -27,7 +27,7 @@
   </tbody>
 </table>
 
-## :desktop_computer: Running Locally
+## 🖥️  Running Locally
 
 Download this repository then run the install script. This will also generate a new `app_data/.env` file which is used for authentication.
 
@@ -42,7 +42,7 @@ Then follow instructions in the root `index.php` page to run the site. You will 
 
 https://github.com/dataformsjs/website/blob/master/public/js/page-playground.js
 
-## :gear: How it works
+## ⚙️ How it works
 
 This project has the same code base and a similar setup as the playground for FastSitePHP. See info in the following repository for how the site works.
 
@@ -51,13 +51,13 @@ The primary difference the DataFormsJS playground only allows for static assets 
 https://github.com/fastsitephp/playground
 
 
-## :handshake: Contributing
+## 🤝 Contributing
 
 * If you find a typo or grammar error please fix and submit.
 * Additional language template translations are needed. Refer to the main project if you can help with translations.
 * Any changes to the core code will likely not be accepted unless you first open an issue. A lot of security is needed in order to make this site work so every line of code must be carefully considered.
 * If you think you’ve found an issue with security or have additional security ideas please open an issue. No financial transactions other than the cost of the server are dependent on this site so opening a public issue is ok. However if you are able to obtain root or sudo access to the server please [get in touch privately](https://www.fastsitephp.com/en/security-issue).
 
-## :memo: License
+## 📝 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
