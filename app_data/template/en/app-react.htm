@@ -16,25 +16,6 @@
         <div id="root"></div>
 
         <!--
-            React
-            https://reactjs.org
-        -->
-        <!--
-        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
-        -->
-        <script src="https://unpkg.com/react@17.0.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-
-        <!--
-            React Router
-            https://reacttraining.com/react-router/
-            https://github.com/ReactTraining/react-router
-        -->
-        <script src="https://unpkg.com/react-router@5.2.0/umd/react-router.min.js"></script>
-        <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.min.js"></script>
-
-        <!--
             DataFormsJS JSX Loader
             https://www.dataformsjs.com
         -->
@@ -46,6 +27,40 @@
         </script>
 
         <!--
+            React
+            https://reactjs.org
+        -->
+        <!--
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
+        -->
+        <script src="https://unpkg.com/react@17.0.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+        <!--
+            Preact
+            https://preactjs.com
+
+            * To use Preact instead of React comment out or delete the React
+              scripts above and uncomment the Preact code block below.
+            * Calling `jsxLoader.usePreact()` will enable allow the JSX Loader to
+              handle React Code for Preact and it will allow for compatibility with
+              Preact when using React Router and other React Components.
+        -->
+        <!--
+        <script src="https://unpkg.com/preact@10.5.7/dist/preact.min.js"></script>
+        <script> jsxLoader.usePreact(); </script>
+        -->
+
+        <!--
+            React Router
+            https://reacttraining.com/react-router/
+            https://github.com/ReactTraining/react-router
+        -->
+        <script src="https://unpkg.com/react-router@5.2.0/umd/react-router.min.js"></script>
+        <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.min.js"></script>
+
+        <!--
             DataFormsJS React Components
 
             The core [DataFormsJS.min.js] file includes DataFormsJS React Components
@@ -54,7 +69,7 @@
             using jsxLoader.
 
             Additional Components [ImageGallery, LeafletMap] and Class [I18n]
-            need to be included seperatly.
+            need to be included separately.
         -->
         <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@5.4.1/js/react/es6/DataFormsJS.min.js"></script>
         <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@5.4.1/js/react/es5/DataFormsJS.min.js"></script>
