@@ -85,9 +85,9 @@
             DataFormsJS Web Components
             https://www.dataformsjs.com
         -->
-        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/url-router.min.js"></script>
-		<script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/spa-links.min.js"></script>
-        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/polyfill.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/url-router.min.js"></script>
+		<script type="module" src="https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/spa-links.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/polyfill.min.js"></script>
         <script>
             window.lazyLoad = {
                 calc_page: 'calc-page-web.js',
@@ -95,20 +95,20 @@
                     // <data-list> is accessed directly in API without a JSON service so due to timing
                     // of how the API is called the [nomodule] version is specified here. For most
                     // apps the [nomodule] version would not need to be included.
-                    module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/data-list.min.js',
-                    nomodule: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/controls/data-list.min.js',
+                    module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/data-list.min.js',
+                    nomodule: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/controls/data-list.min.js',
                 },
-                data_table: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/data-table.min.js' },
-                json_data: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/json-data.min.js' },
-                input_filter: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/input-filter.min.js' },
-                sortable_table: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/sortable-table.min.js' },
+                data_table: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/data-table.min.js' },
+                json_data: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/json-data.min.js' },
+                input_filter: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/input-filter.min.js' },
+                sortable_table: { module: 'https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/sortable-table.min.js' },
                 flags: 'https://cdn.jsdelivr.net/npm/semantic-ui-flag@2.4.0/flag.min.css',
             };
         </script>
 
         <!-- Opcional: muestra una advertencia para los navegadores más antiguos (IE, dispositivos móviles más antiguos, etc.) -->
         <!--
-        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@5.7.0/js/web-components/old-browser-warning.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/npm/dataformsjs@5/js/web-components/old-browser-warning.min.js"></script>
         -->
 
         <!-- Actualizar contenido cuando la página se carga o cambia -->
