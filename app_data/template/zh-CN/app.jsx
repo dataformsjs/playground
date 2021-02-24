@@ -61,6 +61,16 @@ function LazyLoadDataPage(props) {
     );
 }
 
+// Load and compile [calc-react.jsx] the first time this page is accessed
+function CalculatorPage() {
+    return (
+        <LazyLoad
+            scripts="calc-react.jsx"
+            isLoading={<ShowLoading />}
+            isLoaded="Calculator" />
+    );
+}
+
 function DemosPage() {
     return (
         <React.Fragment>
@@ -82,6 +92,7 @@ class App extends React.Component {
                     <header>
                         <nav>
                             <NavLink exact to="/" activeClassName="active">Home</NavLink>
+                            <NavLink exact to="/calc" activeClassName="active">Calculator</NavLink>
                             <NavLink exact to="/data" activeClassName="active">Data Example</NavLink>
                             <NavLink exact to="/demos" activeClassName="active">Other Demos</NavLink>
                         </nav>
@@ -89,6 +100,7 @@ class App extends React.Component {
 
                     <main id="view" className="container">
                         <Route exact path="/" component={HomePage} />
+                        <Route exact path="/calc" component={CalculatorPage} />
                         <Route exact path="/data" component={DataPage} />
                         <Route exact path="/demos" component={DemosPage} />
                     </main>

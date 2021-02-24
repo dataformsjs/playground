@@ -62,7 +62,7 @@ function LazyLoadDataPage(props) {
 }
 
 // Load and compile [calc-react.jsx] the first time this page is accessed
-function CalculatorPage(props) {
+function CalculatorPage() {
     return (
         <LazyLoad
             scripts="calc-react.jsx"
