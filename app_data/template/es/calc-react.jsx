@@ -1,4 +1,4 @@
-// Get the `useReducer` function from either Preact or React 
+// Get the `useReducer` function from either Preact or React
 // depending on which Library was loaded with the page.
 // To switch to Preact from React see comments in [app-react.htm].
 const useReducer = (window.preactHooks === undefined ? React.useReducer : preactHooks.useReducer);
@@ -46,18 +46,22 @@ const EVENT_CHANGE_OP = 'change-op';
 function reducer(state, action) {
     switch (action.type) {
         case EVENT_CALCULATE:
+            const z = calc.calculate(state.currentX, state.currentOp, state.currentY);
             const result = {
                 x: state.currentX,
                 op: state.currentOp,
                 y: state.currentY,
-                z: calc.calculate(state.currentX, state.currentOp, state.currentY),
+                z: z,
+                hasError: isNaN(z),
             };
             const newState = {
-                results: state.results.concat([result]),
+                results: [result].concat(state.results), // Add to front of Array
                 currentOp: ops[getRandomInt(4)],
                 currentX: getRandomInt(1000000),
                 currentY: getRandomInt(1000000),
             };
+            // Save to DataFormsJS Cache object so that existing values will be
+            // kept in memory when the page is navigated away from and back to.
             Cache.set('calc', newState);
             return newState;
         case EVENT_CHANGE_X:
