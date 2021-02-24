@@ -1,4 +1,7 @@
-const useReducer = React.useReducer;
+// Get the `useReducer` function from either Preact or React 
+// depending on which Library was loaded with the page.
+// To switch to Preact from React see comments in [app-react.htm].
+const useReducer = (window.preactHooks === undefined ? React.useReducer : preactHooks.useReducer);
 
 // Simple array to match the pages <select>
 const ops = [ '+', '-', '*', '/' ];
