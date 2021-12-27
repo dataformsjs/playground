@@ -22,5 +22,5 @@ rm ~/master.zip
 rsync -rcv --delete ~/playground-master/app/ /var/www/dataformsjs-playground/app
 rsync -rcv --delete ~/playground-master/app_data/template/ /var/www/dataformsjs-playground/app_data/template
 rsync -rcv --delete ~/playground-master/scripts/ /var/www/dataformsjs-playground/scripts
-rsync -rcv --delete --exclude sites ~/playground-master/html/ /var/www/dataformsjs-playground/public
+rsync -rcv --delete --exclude sites ~/playground-master/public/ /var/www/dataformsjs-playground/public
 rm -r ~/playground-master
