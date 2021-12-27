@@ -12,11 +12,11 @@
 //     php -S localhost:8888
 //
 // Then open your web browser to:
-//     http://localhost:8888/playground/html/
+//     http://localhost:8888/playground/public/
 //
 // This assume the following folder structure:
 //   - [dataformsjs] "Root Directory"
 //     - [website] Repository
 //     - [playground] Repository (this project)
 
-header('Location: html/');
+header('Location: public/');

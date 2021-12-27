@@ -8,19 +8,19 @@
 #  are confirmed.
 #
 #  To run:
-#      bash /var/www/scripts/sync-server-from-github.sh
+#      bash /var/www/dataformsjs-playground/scripts/sync-server-from-github.sh
 #
 #  For testing with [rsync] use [-n = --dry-run]
 #  Example:
-#      rsync -nrcv --delete ~/playground-master/app_data/template/ /var/www/app_data/template
+#      rsync -nrcv --delete ~/playground-master/app_data/template/ /var/www/dataformsjs-playground/app_data/template
 #
 # -----------------------------------------------------------------------------
 
 wget https://github.com/dataformsjs/playground/archive/master.zip -O ~/master.zip
 unzip -q ~/master.zip
 rm ~/master.zip
-rsync -rcv --delete ~/playground-master/app/ /var/www/app
-rsync -rcv --delete ~/playground-master/app_data/template/ /var/www/app_data/template
-rsync -rcv --delete ~/playground-master/scripts/ /var/www/scripts
-rsync -rcv --delete --exclude sites ~/playground-master/html/ /var/www/html
+rsync -rcv --delete ~/playground-master/app/ /var/www/dataformsjs-playground/app
+rsync -rcv --delete ~/playground-master/app_data/template/ /var/www/dataformsjs-playground/app_data/template
+rsync -rcv --delete ~/playground-master/scripts/ /var/www/dataformsjs-playground/scripts
+rsync -rcv --delete --exclude sites ~/playground-master/html/ /var/www/dataformsjs-playground/public
 rm -r ~/playground-master

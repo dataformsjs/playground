@@ -50,7 +50,7 @@ function getTemplateRoot($lang) {
 }
 
 function getSitePath($site) {
-    return __DIR__ . '/../html/sites/' . $site . '/';
+    return __DIR__ . '/../public/sites/' . $site . '/';
 }
 
 
