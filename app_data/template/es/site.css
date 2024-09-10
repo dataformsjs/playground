@@ -18,37 +18,6 @@ html, body, #root { height:100%; margin:0; }
     --lightest-color: hsla(210, 33%, 90%, 1);
 }
 
-/* El elemento principal tiene colores alternativos IE porque IE no admite variables CSS */
-@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-    nav { background-color: rgb(32, 48, 64); }
-    nav a, h1, footer { background-color: hsla(210, 33%, 38%, 1); }
-    .calc-result ul { border-bottom: 1px solid rgb(32, 48, 64); }
-    .calc-result ul li { border: 1px solid rgb(32, 48, 64); }
-    .calc-result ul li:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
-    .demos li a:hover { background-color: hsla(210, 33%, 76%, 1); }
-    a,
-    a:visited { color: rgb(32, 48, 64); }
-    a:hover { color: hsla(210, 33%, 38%, 1); }
-    nav a:hover { color: #fff; }
-    thead { background-color: hsla(210, 33%, 38%, 1); }
-    th, td { border:1px solid hsla(210, 33%, 76%, 1); }
-    table tbody tr:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
-    table tbody tr.row-odd { background-color: hsla(210, 33%, 90%, 1) !important; }
-    table tbody tr.highlight { background-color:#ff0 !important; }
-
-    /* Flexbox Issue */
-    .calc input,
-    .calc select,
-    .calc button { width: 100%; }
-
-    /*
-        DataFormsJS configurará esto manualmente en elementos individuales para IE,
-        sin embargo, dado que no se hizo en el archivo CSS principal o en la página,
-        IE mostrará los elementos mientras DataFormsJS se carga si esto no está incluido.
-    */
-    template { display:none; }
-}
-
 /* Elementos comunes */
 
 body,
@@ -169,13 +138,6 @@ a:hover { color:var(--medium-color); text-decoration:none; }
 	height: 152px;
     width: 152px;
     will-change: transform;
-}
-/* Ajuste la parte superior/izquierda de la órbita para IE */
-@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-    .home-page-animation .orbit {
-        top: calc((100% - 152px) / 1.5);
-        left: calc((100% - 152px) / 2);
-    }
 }
 
 .home-page-animation .orbit {

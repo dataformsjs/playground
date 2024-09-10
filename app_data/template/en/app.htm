@@ -22,6 +22,12 @@
         <title>Playground Site</title>
         <link rel="stylesheet" href="site.css">
         <link rel="shortcut icon" href="../../favicon.ico" />
+        <script nomodule>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'site-ie.css';
+            document.head.appendChild(link);
+        </script>
     </head>
     <body>
         <header>
@@ -34,7 +40,7 @@
         </header>
 
         <main id="view" class="container"></main>
-        
+
         <footer data-template-id="tmpl-footer"></footer>
 
         <template id="loading-screen">
@@ -44,7 +50,7 @@
         <script type="text/x-template" data-engine="handlebars" id="error-screen">
             <h3 class="error">{{errorMessage}}</h3>
         </script>
-        
+
         <script type="text/x-template" data-engine="handlebars" id="tmpl-footer">
             <p>{{js '(new Date()).getFullYear()'}}</p>
             <p>{{now}}</p>
@@ -60,7 +66,7 @@
                 </div>
             </div>
         </template>
-                
+
         <script
             type="text/x-template"
             data-engine="handlebars"
@@ -80,7 +86,7 @@
             data-lazy-load="jsonData, filter, sort, clickToHighlight, flags"
             src="data-page.htm">
         </script>
-        
+
         <template data-route="/demos">
             <h1>Other Demos</h1>
             <ul class="demos">
@@ -95,7 +101,7 @@
             https://handlebarsjs.com
         -->
         <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.6/dist/handlebars.min.js"></script>
-        
+
         <!-- DataFormsJS Handlebars Helpers -->
         <script src="https://cdn.jsdelivr.net/npm/dataformsjs@5/js/extensions/handlebars-helpers.min.js"></script>
 

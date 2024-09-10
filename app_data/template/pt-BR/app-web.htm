@@ -18,6 +18,12 @@
             has-error:not(:defined),
             is-loaded:not(:defined) { display:none; }
         </style>
+        <script nomodule>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'site-ie.css';
+            document.head.appendChild(link);
+        </script>
     </head>
     <body>
         <header>

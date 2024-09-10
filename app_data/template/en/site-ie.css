@@ -1,0 +1,40 @@
+
+/* Main element fallback colors IE because IE does not support CSS variables */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    nav { background-color: rgb(32, 48, 64); }
+    nav a, h1, footer { background-color: hsla(210, 33%, 38%, 1); }
+    .calc-result ul { border-bottom: 1px solid rgb(32, 48, 64); }
+    .calc-result ul li { border: 1px solid rgb(32, 48, 64); }
+    .calc-result ul li:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
+    .demos li a:hover { background-color: hsla(210, 33%, 76%, 1); }
+    a,
+    a:visited { color: rgb(32, 48, 64); }
+    a:hover { color: hsla(210, 33%, 38%, 1); }
+    nav a:hover { color: #fff; }
+    thead { background-color: hsla(210, 33%, 38%, 1); }
+    th, td { border:1px solid hsla(210, 33%, 76%, 1); }
+    table tbody tr:nth-child(odd) { background-color: hsla(210, 33%, 90%, 1); }
+    table tbody tr.row-odd { background-color: hsla(210, 33%, 90%, 1) !important; }
+    table tbody tr.highlight { background-color:#ff0 !important; }
+
+    /* Flexbox Issue */
+    .calc input,
+    .calc select,
+    .calc button { width: 100%; }
+
+    /*
+    	DataFormsJS will manually set this on individual elements for IE,
+    	however since it not done in the main CSS file or on the page then
+        IE will display the elements while DataFormsJS is loading if this
+        is not included.
+    */
+    template { display:none; }
+}
+
+/* Adjust top/left of orbit for IE */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .home-page-animation .orbit {
+        top: calc((100% - 152px) / 1.5);
+        left: calc((100% - 152px) / 2);
+    }
+}
