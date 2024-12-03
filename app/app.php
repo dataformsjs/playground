@@ -1,5 +1,5 @@
 <?php
-// This script is the main entry point for the app. All admin web servics
+// This script is the main entry point for the app. All admin web services
 // exist in this file. This script and gets loaded from the file [html\index.php].
 
 // ------------------------------------------------------------------
@@ -99,7 +99,7 @@ function getSite($path) {
 // [index.htm] is not allowed because it could override the default
 // page and cause unexpected behavior.
 function fileNameIsValid($name) {
-    $pattern = '/^[a-zA-Z0-9_\-]{1,}.(htm|js|jsx|css|svg|graphql)$/';
+    $pattern = '/^[a-zA-Z0-9_\-]{1,}.(htm|js|jsx|css|svg|graphql|txt)$/';
     if (!preg_match($pattern, $name)) {
         return false;
     }
